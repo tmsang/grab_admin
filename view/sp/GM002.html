@@ -1,0 +1,159 @@
+<link rel="stylesheet" href="css/custom.css">
+<!-- コンテナ -->
+<div class="row" style="margin: 5px;"></div>
+<div class="row">
+    <div class="agmc-ma-col">
+        <h5 class="row-layout-top">GM002　検査結果アラート通知</h5>
+    </div>
+</div>
+<p></p>
+<div class="row row-layout-top">
+  <div class="col table-responsive">
+      <div>基本情報</div>
+      <table class="table table-bordered border-primary">
+        <thead></thead>
+        <tbody>
+            <tr>
+                <td style="background:#26A69A;color: white;"><label>患者ID</label></td><td><span class="pid">000000000X</span></td>
+            </tr>
+                <td style="background:#26A69A;color: white;"><label">患者氏名</label></td><td><span class="patient_name">山本太郎</span></td>
+            <tr>
+                <td style="background:#26A69A;color: white;"><label>年齢</label></td><td><span>41</span></td>
+            </tr>
+            <tr>
+                <td style="background:#26A69A;color: white;"><label>性別</label></td><td><span>男</span></td>
+            </tr>
+            <tr>
+                <td style="background:#26A69A;color: white;"><label>入外区分</label></td><td><span>XXXX</span></td>
+            </tr>
+        </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="kensa row row-layout-top">
+    <div class="col table-responsive">
+        <div>検査情報</div>
+        <table class="table table-bordered border-primary">
+          <thead></thead>
+          <tbody>
+              <tr>
+                  <td style="background:#26A69A;color: white;"><label>検査項目</label></td><td><span>000000000X</span></td>
+              </tr>
+                  <td style="background:#26A69A;color: white;"><label">項目名</label></td><td><span>XXXXXXXXX</span></td>
+              <tr>
+                  <td style="background:#26A69A;color: white;"><label>検査結果値</label></td><td><span>XX</span></td>
+              </tr>
+              <tr>
+                  <td style="background:#26A69A;color: white;"><label>単位</label></td><td><span></span></td>
+              </tr>
+              <tr>
+                  <td style="background:#26A69A;color: white;"><label>基準値</label></td><td><span>XXX</span></td>
+              </tr>
+              <tr>
+                  <td style="background:#26A69A;color: white;"><label>異常判定</label></td><td><span>XXXX</span></td>
+              </tr>
+          </tbody>
+      </table>
+    </div>
+</div>
+
+<div class="saikin-1 row row-layout-top">
+    <div class="col table-responsive">
+        <div>一般細菌</div>
+        <table class="table table-bordered border-primary">
+          <thead></thead>
+          <tbody>
+            <thead></thead>
+            <tbody>
+                <tr>
+                    <td colspan="2" style="text-align: center;">塗抹情報</td>
+                </tr>
+                <tr>
+                    <td style="background:#26A69A;color: white;"><label>塗抹項目名</label></td><td><span>000000000X</span></td>
+                </tr>
+                <tr>
+                    <td style="background:#26A69A;color: white;"><label>塗抹結果</label></td><td><span>000000000X</span></td>
+                </tr>
+                <tr>
+                    <td colspan="2" style="text-align: center;">培養情報</td>
+                </tr>
+                <tr>
+                    <td style="background:#26A69A;color: white;"><label>同定菌コード</label></td><td><span>000000000X</span></td>
+                </tr>
+                <tr>
+                    <td style="background:#26A69A;color: white;"><label>同定菌名</label></td><td><span>000000000X</span></td>
+                </tr>
+                <tr>
+                    <td style="background:#26A69A;color: white;"><label>同定菌量コード</label></td><td><span>000000000X</span></td>
+                </tr>
+                <tr>
+                    <td style="background:#26A69A;color: white;"><label>同定菌量</label></td><td><span>000000000X</span></td>
+                </tr>
+          </tbody>
+      </table>
+    </div>
+</div>
+<div class="saikin-2 row row-layout-top">
+    <div class="col table-responsive">
+        <div>抗酸菌検査</div>
+        <table class="table table-bordered border-primary">
+            <thead></thead>
+            <tbody>
+                <tr>
+                    <td colspan="2" style="text-align: center;">塗抹情報</td>
+                </tr>
+                <tr>
+                    <td style="background:#26A69A;color: white;"><label>塗抹項目名</label></td><td><span>000000000X</span></td>
+                </tr>
+                <tr>
+                    <td style="background:#26A69A;color: white;"><label>塗抹結果</label></td><td><span>000000000X</span></td>
+                </tr>
+                <tr>
+                    <td colspan="2" style="text-align: center;">培養情報</td>
+                </tr>
+                <tr>
+                    <td style="background:#26A69A;color: white;"><label>同定菌コード</label></td><td><span>000000000X</span></td>
+                </tr>
+                <tr>
+                    <td style="background:#26A69A;color: white;"><label>同定菌名</label></td><td><span>000000000X</span></td>
+                </tr>
+                <tr>
+                    <td style="background:#26A69A;color: white;"><label>同定菌量コード</label></td><td><span>000000000X</span></td>
+                </tr>
+                <tr>
+                    <td style="background:#26A69A;color: white;"><label>同定菌量</label></td><td><span>000000000X</span></td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+</div>
+<div class="row align-items-center" style="margin-top: 0.5rem;">
+    <div class="col"></div>
+    <div class="col"><button type="button" class="btn btn-primary float-start" id="serch-btn">確認</button></div>
+    <div class="col"></div>
+</div>
+
+<script>
+    /**html 読み込まれたら*/
+    $(() => {
+        //クエリパラメータを取得
+        var param = getQueryString();
+        var mode;
+        if(null == param){
+            mode = null;
+        }else{
+            mode = param["mode"];
+        }
+        console.log(mode);
+
+        //微生物の場合
+        if(mode == 2){
+            $('.kensa').addClass('display-none');
+        }else{
+            $('.saikin-1').addClass('display-none');
+            $('.saikin-2').addClass('display-none');
+        }
+    });
+</script>

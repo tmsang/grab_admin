@@ -1,0 +1,414 @@
+<link rel="stylesheet" href="css/custom.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<!-- コンテナ -->
+<div class="row row-layout-top"></div>
+<div class="row">
+    <div class="agmc-ma-col">
+        <h5 class="row-layout-top">GM003 通知一覧</h5>
+    </div>
+</div>
+<p></p>
+<div class="row align-items-center row-layout-top">
+
+    <!-- 左半分 -->
+    <div class="col-xl">
+        <div class="accordion" id="accordionExample">
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingOne">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    検索条件
+                </button>
+                </h2>
+                <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                        <div class="row row-layout-top">
+                            <div class="col-auto">
+                                <label for="In-pid" class="col-form-label">患者ID</label>
+                            </div>
+                            <div class="col-auto">
+                                <input type="text" id="In-pid" class="form-control" >
+                            </div>
+                        </div>
+                        <div class="row align-items-center row-layout-top">
+                            <div class="col-auto">
+                                <label for="In-gather-date" class="col-form-label">既読ステータス</label>
+                            </div>
+                            <div class="col-auto">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                    <label class="form-check-label" for="flexCheckDefault">
+                                        未読
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-auto">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                    <label class="form-check-label" for="flexCheckDefault">
+                                        既読
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-auto">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                    <label class="form-check-label" for="flexCheckDefault">
+                                        一部既読
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row align-items-center row-layout-top">
+                            <div class="col-auto">
+                                <button type="button" class="btn btn-primary float-start" id="serch-btn"><i class="fas fa-search"></i>検索</button>
+                            </div>
+                            <div class="col-auto">
+                                <label>更新日時：2021/07/17 11:59</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--右半分 -->
+    <div class="col-xl">
+    </div>
+</div>
+
+<div class="row align-items-center row-layout-top">
+    <div class="col">
+        <P></P>
+        <div id="result-table" class="table-sm"></div>       
+    </div>
+</div>
+
+<div class="row align-items-center row-layout-top">
+    <div class="col-sm1">
+        <button type="button" class="btn btn-primary">通知送信</button>
+    </div>
+</div>
+
+
+<!-- Modal 通知先選択-->
+<div class="modal fade" data-bs-backdrop="static" id="selectNoticeModal" tabindex="-1" aria-labelledby="selectNoticeModalLabel" aria-hidden="true">
+    <div class="modal-dialog  modal-dialog-centered">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="selectNoticeModalLabel">通知先選択</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <select multiple="multiple" id="my-select" name="my-select[]">
+                            <option value='elem_1'>elem 1</option>
+                            <option value='elem_2'>elem 2</option>
+                            <option value='elem_3'>elem 3</option>
+                            <option value='elem_4'>elem 4</option>
+                            <option value='elem_100'>elem 100</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">キャンセル</button>
+            <button type="button" class="btn btn-primary">選択確定</button>
+        </div>
+        </div>
+    </div>
+</div>
+
+<!--Modal  通知履歴-->
+<!-- 少しずるします。見えないボタンをクリックしたことにします -->
+<button type="button" class="display-none btn btn-primary kidoku-log" data-bs-toggle="modal" data-bs-target="#kidokuLogModal">
+    既読ログ確認
+</button>
+<div class="modal fade" data-bs-backdrop="static" id="kidokuLogModal" tabindex="-1" aria-labelledby="historyModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="historyModalLabel">既読ログ確認</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div>今回の通知内容</div>
+                        <table class="table table-bordered border-primary table-sm">
+                            <thead></thead>
+                            <tbody>
+                                <tr>
+                                    <td style="background:#26A69A;color: white;"><label>患者ID</label></td><td><span>000000000X</span></td>
+                                    <td style="background:#26A69A;color: white;"><label>患者氏名</label></td><td><span>サンプル　太郎</span></td>
+                                    <td style="background:#26A69A;color: white;"><label>通知項目</label></td><td><span>CK</span></td>
+                                    <td style="background:#26A69A;color: white;"><label>結果</label></td><td><span>12100</span></td>
+                                    <td style="background:#26A69A;color: white;"><label>単位</label></td><td><span>U/L</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div>既読状況</div>
+                        <table class="table table-bordered border-primary table-sm">
+                            <thead class="agmc-sb-col">
+                                <tr>
+                                    <th>検査結果確定時刻</th>
+                                    <th>検査結果報告時刻</th>
+                                    <th>最終確認日時</th>
+                                    <th>通知先</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><span>2021/07/22  12:29:00</span></td>
+                                    <td><span>2021/07/22  12:52:00</span></td>
+                                    <td><span>2021/07/22  12:58:00</span></td>
+                                    <td><span>A医師</span></td>
+                                </tr>
+                                <tr>
+                                    <td><span>2021/07/22  12:29:00</span></td>
+                                    <td><span>2021/07/22  12:52:00</span></td>
+                                    <td><span>2021/07/22  12:58:00</span></td>
+                                    <td><span>B医師</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">閉じる</button>
+            <!-- <button type="button" class="btn btn-primary">選択確定</button> -->
+        </div>
+        </div>
+    </div>
+</div>
+
+<button type="button" class="display-none btn btn-primary history-val" data-bs-toggle="modal" data-bs-target="#historyModal">
+    前回値確認画面
+</button>
+<div class="modal fade" data-bs-backdrop="static" id="historyModal" tabindex="-1" aria-labelledby="historyModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="historyModalLabel">前回値確認</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div>今回の通知内容</div>
+                        <table class="table table-bordered border-primary table-sm">
+                            <thead></thead>
+                            <tbody>
+                                <tr>
+                                    <td style="background:#26A69A;color: white;"><label>患者ID</label></td><td><span>000000000X</span></td>
+                                    <td style="background:#26A69A;color: white;"><label>患者氏名</label></td><td><span>サンプル　太郎</span></td>
+                                    <td style="background:#26A69A;color: white;"><label>依頼科</label></td><td><span>消化器内科</span></td>
+                                    <td style="background:#26A69A;color: white;"><label>検査結果確定時刻</label></td><td><span>2021/7/29  17:16:00</span></td>
+                                </tr>
+                                <tr>
+                                    <td style="background:#26A69A;color: white;"><label>通知項目</label></td><td><span>CK</span></td>
+                                    <td style="background:#26A69A;color: white;"><label>結果</label></td><td><span>4826</span></td>
+                                    <td style="background:#26A69A;color: white;"><label>単位</label></td><td><span>U/L</span></td>
+                                    <td colspan="2">&nbsp;</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div>通知履歴</div>
+                        <table class="table table-bordered border-primary table-sm">
+                            <thead class="agmc-sb-col">
+                                <tr>
+                                    <th>検査結果確定時刻</th>
+                                    <th>通知項目</th>
+                                    <th>結果</th>
+                                    <th>単位</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><span>2021/7/20  17:16:00</span></td>
+                                    <td><span>CK</span></td>
+                                    <td style="text-align:right;"><span>5124</span></td>
+                                    <td><span>U/L</span></td>
+                                </tr>
+                                <tr>
+                                    <td><span>2021/7/19  19:16:00</span></td>
+                                    <td><span>WBC</span></td>
+                                    <td style="text-align:right;"><span>21248</span></td>
+                                    <td><span>U/L</span></td>
+                                </tr>
+                                <tr>
+                                    <td><span>2021/7/18  17:18:00</span></td>
+                                    <td><span>CK</span></td>
+                                    <td style="text-align:right;"><span>4976</span></td>
+                                    <td><span>U/L</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">閉じる</button>
+            <!-- <button type="button" class="btn btn-primary">選択確定</button> -->
+        </div>
+        </div>
+    </div>
+</div>
+  
+<script>
+    /**html 読み込まれたら*/
+    $(() => {
+        //http://loudev.com/#home
+        $('#my-select').multiSelect();
+    
+        //送信状況
+        var cell_color =function(cell){
+            var val= cell.getValue();
+            if(val =="未送信"){
+                cell.getElement().style.background="#ff7f50";
+                cell.getElement().style.color="red";
+                return val;
+            }else{
+                return val;
+            }
+        }
+
+        var tdata =[
+            {   no:1,
+                noticFlg:"false",
+                soushinStatus:"未送信",
+                soushinName:"",
+                kidokuStatus:"未読",
+                lastDate:"",
+                lastName:"",
+                pid:"999987872",
+                pName:"テスト　はなはな",
+                iraika:"消化器内科",
+                kensakakutei:"2021/7/27  11:59:00",
+                kensazairyo:"血清",
+                tuchiKoumoku:"LD",
+                result:"9810",
+                tani:"U/L",
+                //htmlを作る際に業務ロジックでパラメータを仕込んだりする必要があるのでここはかなり難しいと思う
+                notic:"<div class=\"row\"><div class=\"col\"><input class=\"form-control\" type=\"text\" placeholder=\"A医師(#9984),B医師(#9999)\"aria-label=\"readonly input example\" readonly></div><div class=\"col\"><button type=\"button\" class=\"btn btn-primary\" data-bs-toggle=\"modal\" data-bs-target=\"#selectNoticeModal\">選択</button></div></div>",
+                //noticKb:"",
+                coment:""
+            },
+            {   no:2,
+                noticFlg:"true",
+                soushinStatus:"送信済",
+                soushinName:"技師A",
+                kidokuStatus:"一部既読",
+                lastDate:"2021/07/28 19:09",
+                lastName:"A医師(#9984)",
+                pid:"999917310",
+                pName:"テスト放射１０",
+                iraika:"呼吸器内科",
+                kensakakutei:"2021/07/27  19:09:00",
+                kensazairyo:"血清",
+                tuchiKoumoku:"AST",
+                result:"352",
+                tani:"",
+                //htmlを作る際に業務ロジックでパラメータを仕込んだりする必要があるのでここはかなり難しいと思う
+                notic:"<div class=\"row\"><div class=\"col\"><input class=\"form-control\" type=\"text\" placeholder=\"A医師(#9984),B医師(#9999)\"aria-label=\"readonly input example\" readonly></div><div class=\"col\"><button type=\"button\" class=\"btn btn-primary\" data-bs-toggle=\"modal\" data-bs-target=\"#selectNoticeModal\">選択</button></div></div>",
+                //noticKb:"",
+                coment:""
+            }
+        ]; 
+        //HTML直接書いてTabulatorの機能だけ乗っける
+        var exTable = table = new Tabulator("#result-table", {
+            layout:"fitColumns",//カラムコンテナに合わせる
+            pagination: "local",
+            paginationSize: 5,//5行でページング
+            movableColumns:true,//カラムの移動を許可する
+            data:tdata,
+            columns:[
+                {title:"通知",formatter:"rowSelection", titleFormatter:"rowSelection", hozAlign:"center", headerSort:false, cellClick:function(e, cell){
+                    cell.getRow().toggleSelect();
+                }},
+                {title:"No",field:"no", width:100},
+                //{title:"通知",field:"noticFlg", width:100},
+                {title:"送信状況",field:"soushinStatus",align:"center", width:150,formatter:cell_color},
+                {title:"送信者",field:"soushinName", width:200},
+                {title:"既読ステータス",field:"kidokuStatus",align:"center",
+                 width:200,formatter:function(cell,formatterParams,onRendered){
+                    //セルの値を取得    
+                    var val = cell.getValue();
+                        console.log(cell.getElement());
+                        //未読の場合
+                        if(val == "未読"){
+                            //セルの色を変える
+                            cell.getElement().style.background="#ff7f50";
+                            cell.getElement().style.color="red";
+                            return val;
+                        }
+                        else{
+                            //直接HTMLを書き込む
+                            val ='<a href=\"javascript:showKidokuLog();\">'+val+'</a>';
+                            return val;
+                        }
+                 }},
+                {title:"最終確認日時",field:"lastDate", width:150},
+                {title:"最終確認者",field:"lastName",width:200},
+                {title:"患者ID",field:"pid", width:100, formatter:"link", formatterParams:{
+                    labelField:"pid",
+                    urlPrefix:"javascript:showHistory();",//javaScriptでモーダルダイアログを表示する
+                    //target:"_blank",
+                }},
+                {title:"患者氏名",field:"pName", width:200},
+                {title:"依頼科",field:"iraika", width:100},
+                {title:"検査結果確定時刻",field:"kensakakutei", width:200},
+                {title:"検査材料",field:"kensazairyo",width:150},
+                {title:"通知項目",field:"tuchiKoumoku",width:100},
+                {title:"結果",field:"result",width:100},
+                {title:"単位",field:"tani", width:100},
+                {title:"通知先",field:"notic",formatter:"html", width:300},
+                //TODO 値の設定の仕方を調べる必要がある
+                {title:"通知区分",field:"noticKb", width:200, editor:"select", editorParams:{values:{"緊急アラート":"緊急アラート", "通常アラート":"通常アラート", "ワーニング":"ワーニング", "INFO":"INFO"}}},
+                {title:"送信時コメント",field:"coment",formatter:"textarea", width:200,editor:"textarea", 
+                    editorParams:{
+                        elementAttributes:{                   
+                            maxlength:"10", //set the maximum character length of the textarea element to 10 characters
+                        },
+                        mask:"（担当技師入力欄）",
+                        verticalNavigation:"editor", //navigate cursor around text area without leaving the cell
+                    }}
+            ]
+        });
+        //モーダルダイアログ
+        // var myModal = document.getElementById('myModal')
+        // var myInput = document.getElementById('myInput')
+
+        // myModal.addEventListener('shown.bs.modal', function () {
+        //     myInput.focus();
+        // })
+
+    });
+    //既読ログ確認
+    function showKidokuLog(){
+        $('.kidoku-log').trigger("click");
+    }
+
+    //前回値確認モーダル表示
+    function showHistory(){
+        console.log("showHistory が呼ばれた");
+        //モーダルが表示できない　何故かは不明　エラーにもならない
+        //$('#selectNoticeModal').show();
+        $('.history-val').trigger("click");
+    } 
+</script>

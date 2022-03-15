@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="jp">
+
+<head>
+    <meta charset="utf-8" />
+
+    <!-- レスポンシブ用メタタグ -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- ファビコン　TODO 無いらしい仮置き -->
+    <link rel="icon" href="img/hosp.ico">
+
+    <!-- Jquery 3.6.0 順番は絶対守ること　ここから-->
+    <script src="./lib/jquery/jquery.min.js"></script>
+
+    <!-- font-awesome -->
+    <link rel="stylesheet" href="./css/fontawesome/css/all.min.css">
+    <!-- bootstrap4.6.1-->
+    <link href="./lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <script src="./lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- bootstrap-datepicker -->
+    <link href="./lib/bootstrap-datepicker/css/bootstrap-datepicker.min.css" rel="stylesheet">
+    <script src="./lib/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
+    <script src="./lib/bootstrap-datepicker/locales/bootstrap-datepicker.ja.min.js"></script>
+
+    <!-- カスタム-->
+    <script src="./js/custom.js"></script>
+
+    <title>尼崎総合医療センターWebアプリ</title>
+</head>
+
+<body>
+    <script src="./lib/promise-polyfill/dist/polyfill.min.js"></script>
+    <!-- <script src="./lib/fetch/fetch.js"></script> -->
+
+    <!-- tabro v4.9.3-->
+    <link rel="stylesheet" href="./lib/tabulator-4.9.3/dist/css/tabulator.min.css">
+    <link rel="stylesheet" href="./lib/tabulator-4.9.3/dist/css/bootstrap/tabulator_bootstrap4.min.css" />
+    <script src="./lib/tabulator-4.9.3/dist/js/tabulator.min.js"></script>
+    <script src="./lib/moment/js/moment.min.js"></script>
+
+    <link rel="stylesheet" href="css/custom.css">
+
+    <!-- <link href="./lib/lou-multi-select/css/multi-select.css" media="screen" rel="stylesheet" type="text/css"> -->
+    <script src="./js/const.js"></script>
+    <script src="./js/messages.js"></script>
+    <script src="./js/common.js"></script>
+    <script src="./js/utils.js"></script>
+    <script src="./js/loadLayout.js"></script>
+
+    <!--　共通ヘッダナビ -->
+    <header class="hed-nav md-ma-col"></header>
+
+    <!-- コンテナ　フルで表示 -->
+    <div class="container-fluid">
+
+        <!-- メインコンテンツ -->
+        <div class="m-content"></div>
+    </div>
+
+    <div class="modal bd-example-modal-sm align-items-center" id="background" data-backdrop="static" aria-hidden="true"
+        data-keyboard="false" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered" style="width: 48px;">
+            <div class="modal-content ">
+                <span class="fa fa-spinner fa-spin fa-3x" style="width: 100%"></span>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

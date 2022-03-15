@@ -1,0 +1,343 @@
+<link rel="stylesheet" href="css/custom.css">
+<!-- コンテナ -->
+<div class="row" style="margin: 5px;"></div>
+<div class="row">
+    <div class="agmc-ma-col">
+        <h5 class="row-layout-top">GM001 検査結果参照</h5>
+    </div>
+</div>
+<p></p>
+<div class="row align-items-center row-layout-top">
+    <!-- 左半分 -->
+    <div class="col-sm">
+        <div class="accordion" id="accordionExample">
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="headingOne">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                  検索条件
+                </button>
+              </h2>
+              <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                    <div class="row">
+                        <div class="col-4">
+                            <select class="form-select form-select-sm mb-3" aria-label=".form-select-lg example">
+                                <option selected>対象システム</option>
+                                <option value="1">検体検査システム</option>
+                                <option value="2">微生物システム</option>
+                                <option value="3">システム３</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-auto">
+                            <label for="In-Notification-Id" class="col-form-label">通知ID</label>
+                        </div>
+                        <div class="col-auto">
+                            <input type="text" id="In-Notification-Id" class="form-control" >
+                        </div>
+                    </div>
+                    <div class="row row-layout-top">
+                        <div class="col-auto">
+                            <label for="In-pid" class="col-form-label">患者ID</label>
+                        </div>
+                        <div class="col-auto">
+                            <input type="text" id="In-pid" class="form-control" >
+                        </div>
+                    </div>
+                    <div class="row row-layout-top">
+                        <div class="col-auto">
+                            <label for="In-gather-date" class="col-form-label">採取日</label>
+                        </div>
+                        <div class="col-auto">
+                            <input type="date" id="In-gather-date" class="form-control" >
+                        </div>
+                    </div>
+                    <div class="row row-layout-top">
+                        <div class="col-auto">
+                            <button type="button" class="btn btn-primary float-start" id="serch-btn"><i class="fas fa-search"></i>検索</button>
+                        </div>
+                    </div>
+                </div>
+              </div>
+            </div>
+          </div>
+    </div>
+    <!-- 右半分 -->
+    <div class="col-sm">
+        <!-- 見えない領域 hiddon-->
+        <div>
+        </div>
+    </div>
+
+    <div class="row row-layout-top">
+    </div>
+</div>
+
+<!-- 検索結果一覧行 -->
+<div class="row row-layout-top">
+    <div class="col">
+        <P></P>
+        <!-- 検索結果 -->
+        <div id="result-table" class="table-sm"></div>       
+    </div>
+</div>
+
+<!-- Tab -->
+<div class="row row-layout-top">
+    <div class="col">
+        <ul class="nav nav-tabs" id="infoTab" role="tablist">
+            <li class="nav-item" role="presentation">
+              <a class="nav-link active" id="kentai-tab" data-bs-toggle="tab" href="#kentai" role="tab" aria-controls="home" aria-selected="true">詳細</a>
+            </li>
+            <!-- <li class="nav-item" role="presentation">
+              <a class="nav-link" id="biseibutsu-tab" data-bs-toggle="tab" href="#biseibutsu" role="tab" aria-controls="profile" aria-selected="false">微生物</a>
+            </li> -->
+          </ul>
+          <!-- コンテンツ -->
+          <div class="tab-content" id="infoTabContent">
+            <!-- 検体検査 -->
+            <div class="tab-pane fade show active" id="kentai" role="tabpanel" aria-labelledby="kentai-tab">
+                <div class="row row-layout-top">
+
+                    <div class="col-3 table-responsive">
+                        <div class="base-info display-none">
+                        
+                            <span>基本情報</span>
+                            <table class="table table-bordered border-primary">
+                                <thead></thead>
+                                <tbody>
+                                    <tr>
+                                        <td style="background:#26A69A;color: white;"><label>患者ID</label></td><td><span class="pid">000000000X</span></td>
+                                    </tr>
+                                        <td style="background:#26A69A;color: white;"><label">患者氏名</label></td><td><span class="patient_name">山本太郎</span></td>
+                                    <tr>
+                                        <td style="background:#26A69A;color: white;"><label>年齢</label></td><td><span>41</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="background:#26A69A;color: white;"><label>性別</label></td><td><span>男</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="background:#26A69A;color: white;"><label>入外区分</label></td><td><span>XXXX</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+
+                    <div class="col-3 table-responsive">
+                        <div class="kentai-kensa display-none">
+                            <div>検体検査情報</div>
+                            <table class="table table-bordered border-primary">
+                                <thead></thead>
+                                <tbody>
+                                    <tr>
+                                        <td style="background:#26A69A;color: white;"><label>検査項目</label></td><td><span>000000000X</span></td>
+                                    </tr>
+                                        <td style="background:#26A69A;color: white;"><label">項目名</label></td><td><span>XXXXXXXXX</span></td>
+                                    <tr>
+                                        <td style="background:#26A69A;color: white;"><label>検査結果値</label></td><td><span>XX</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="background:#26A69A;color: white;"><label>単位</label></td><td><span></span></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="background:#26A69A;color: white;"><label>基準値</label></td><td><span>XXX</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="background:#26A69A;color: white;"><label>異常判定</label></td><td><span>XXXX</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="saikin-ippan display-none">
+                            <table class="table table-bordered border-primary">
+                                <span>一般細菌</span>
+                                <thead></thead>
+                                <tbody>
+                                    <tr>
+                                        <td colspan="2" style="text-align: center;">塗抹情報</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="background:#26A69A;color: white;"><label>塗抹項目名</label></td><td><span>000000000X</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="background:#26A69A;color: white;"><label>塗抹結果</label></td><td><span>000000000X</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2" style="text-align: center;">培養情報</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="background:#26A69A;color: white;"><label>同定菌コード</label></td><td><span>000000000X</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="background:#26A69A;color: white;"><label>同定菌名</label></td><td><span>000000000X</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="background:#26A69A;color: white;"><label>同定菌量コード</label></td><td><span>000000000X</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="background:#26A69A;color: white;"><label>同定菌量</label></td><td><span>000000000X</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="col-3 table-responsive">
+                        <div class="kousan display-none">
+                            <div>抗酸菌検査</div>
+                            <table class="table table-bordered border-primary">
+                                <thead></thead>
+                                <tbody>
+                                    <tr>
+                                        <td colspan="2" style="text-align: center;">塗抹情報</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="background:#26A69A;color: white;"><label>塗抹項目名</label></td><td><span>000000000X</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="background:#26A69A;color: white;"><label>塗抹結果</label></td><td><span>000000000X</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2" style="text-align: center;">培養情報</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="background:#26A69A;color: white;"><label>同定菌コード</label></td><td><span>000000000X</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="background:#26A69A;color: white;"><label>同定菌名</label></td><td><span>000000000X</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="background:#26A69A;color: white;"><label>同定菌量コード</label></td><td><span>000000000X</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="background:#26A69A;color: white;"><label>同定菌量</label></td><td><span>000000000X</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- tab2 -->
+            <div class="tab-pane fade" id="biseibutsu" role="tabpanel" aria-labelledby="biseibutsu-tab">
+                <div class="row row-layout-top">
+                </div>
+            </div>
+          </div>
+    </div>
+
+</div>
+<p></p>
+
+
+<script>
+
+    /**テーブル行のデータを取得する*/
+    function getRowData(row){
+        //alert("Row " + row.getIndex() + " Clicked!!!!");
+        //行の中身
+        console.table(row.getData());
+        var _rowData=JSON.parse(JSON.stringify(row.getData()));
+
+        //Exサンプルデータ反映
+        //base-info display-none
+        //基本情報表示
+        if($('.base-info').hasClass('display-none')){
+            console.log('.base-info true');
+            $('.base-info').removeClass('display-none');
+        }else{
+            console.log('.base-info false');
+        }
+
+        //検体検査の場合
+        if("検体検査システム"==_rowData.sys){
+            //kentai-kensa 
+            if($('.kentai-kensa').hasClass('display-none')){
+                $('.kentai-kensa').removeClass('display-none');
+            }
+            $('.saikin-ippan').addClass('display-none');
+            $('.kousan').addClass('display-none');
+            console.log('検体検査システム');
+        }
+
+        //微生物の場合
+        if("微生物システム"==_rowData.sys){
+            //検体検査隠す
+            $('.kentai-kensa').addClass('display-none');
+            //saikin-ippan
+            if($('.saikin-ippan').hasClass('display-none')){
+                $('.saikin-ippan').removeClass('display-none');
+            }
+            //kousan display-none
+            if($('.kousan').hasClass('display-none')){
+                $('.kousan').removeClass('display-none');
+            }
+            console.log('微生物システム');
+        }
+        //患者ID
+        $(".pid").html(_rowData.pid);
+        //患者名
+        $(".patient_name").html(_rowData.patient_name);
+        //確認用
+        //alert(_rowData.pid);
+        
+
+    }
+
+
+    /**html 読み込まれたら*/
+    $(() => {
+        
+        var tdata =[
+        {id:1,sys:"検体検査システム",pid:"0000000001",patient_name:"山本太郎",hospital_department:"糖尿病・内分泌内科",gather_date:"2021/11/01",inspection_result:"問題なし",credit:"㎖"},
+        {id:2,sys:"検体検査システム",pid:"0000000002",patient_name:"山田太郎",hospital_department:"消化器内科",gather_date:"2021/11/02",inspection_result:"問題なし",credit:"ml"},
+        {id:3,sys:"検体検査システム",pid:"0000000003",patient_name:"鈴木太郎",hospital_department:"脳神経内科",gather_date:"2021/11/03",inspection_result:"問題なし",credit:"ml"},
+        {id:4,sys:"検体検査システム",pid:"0000000004",patient_name:"木下太郎",hospital_department:"膠原病リウマチ内科",gather_date:"2021/11/04",inspection_result:"問題なし",credit:"ml"},
+        {id:5,sys:"微生物システム",pid:"0000000005",patient_name:"山本花子",hospital_department:"耳鼻咽喉科・頭頸部外科",gather_date:"2021/11/05",inspection_result:"問題なし",credit:"ml"},
+        {id:6,sys:"微生物システム",pid:"0000000006",patient_name:"山田花子",hospital_department:"眼科",gather_date:"2021/11/06",inspection_result:"問題なし",credit:"ml"}
+        ]; 
+        //Tabulator
+        var table = new Tabulator("#result-table", {
+            layout:"fitColumns",//カラムコンテナに合わせる
+            pagination: "local",
+            paginationSize: 5,//5行でページング
+            movableColumns:true,//カラムの移動を許可する
+            data:tdata,
+            columns:[
+                {title:"ID",field:"id"},
+                {title:"対象システム",field:"sys"},
+                {title:"患者ID",field:"pid"},
+                {title:"患者氏名",field:"patient_name",cellClick:function(e, cell){alert("cell clicked - " + cell.getValue())}},
+                {title:"診療科",field:"hospital_department"},
+                {title:"採取日",field:"gather_date",align:"left"},
+                {title:"検査結果",field:"inspection_result",align:"left"},
+                {title:"単位",field:"credit",align:"left"}
+            ]
+        });
+
+        //行がクリックされたら
+        //http://tabulator.info/examples/5.0?#callbacks
+        table.on('rowClick', function(e, row){
+            //alert("Row " + row.getIndex() + " Clicked!!!!")
+            //alert("Row " + row.getIndex() + " Clicked!!!!")
+            getRowData(row);
+        });
+        table.on("rowContext", function(e, row){
+            alert("Row " + row.getIndex() + " Context Clicked!!!!")
+        });
+
+        //tab　クリックイベント
+        var triggerTabList = [].slice.call(document.querySelectorAll('#infoTab a'));
+        triggerTabList.forEach(function (triggerEl) {
+            var tabTrigger = new bootstrap.Tab(triggerEl);
+
+            triggerEl.addEventListener('click', function (event) {
+                event.preventDefault()
+                tabTrigger.show()
+            });
+        });
+    });
+</script>

@@ -1,0 +1,84 @@
+<!-- コンテナ -->
+<div class="row row-layout-top"></div>
+<div class="row">
+    <div class="agmc-ma-col col">
+        <h5 class="row-layout-top">AA091 通知先メンテンナンス</h5>
+    </div>
+</div>
+<p></p>
+<form id="serch-form">
+    <!-- 検索条件 -->
+    <div class="row align-items-center row-layout-top">
+        <div class="col-sm">
+            <div class="accordion" id="accordionExample">
+                <div class="card">
+                    <div class="card-header" id="headingOne">
+                        <h2 class="mb-0">
+                            <button tabindex="1" class="btn btn-link btn-block text-left focusFirstItem" type="button" data-toggle="collapse"
+                                data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" onFocus="document.querySelector('#searchUserIdLst').focus()">
+                                検索条件
+                            </button>
+                        </h2>
+                    </div>
+                    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
+                        data-parent="#accordionExample">
+                        <div class="card-body">
+                            <div class="row align-items-center ">
+                                <div class="col-auto">
+                                    <label for="searchUserIdLst" class="col-form-label label-item">利用者ID</label>
+                                </div>
+                                <div class="col-auto">
+                                    <input tabindex="2" type="text" id="searchUserIdLst" name="searchUserIdLst" class="form-control"
+                                        list="userList">
+                                    <datalist id="userList">
+                                    </datalist>
+                                </div>
+                                <div class="col-auto">
+                                    <label for="searchDeleteFlgChk" class="col-form-label label-item">削除フラグ</label>
+                                </div>
+                                <div class="col-auto">
+                                    <input class="col-check-input" type="checkbox" value="" id="searchDeleteFlgChk">
+                                </div>
+                            </div>
+                            <div class="row row-layout-top">
+                                <div class="col-auto">
+                                    <button type="button" class="btn btn-primary float-start" id="searchBtn"><i
+                                            class="fas fa-search"></i>検索</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+<div class="alert alert-success display-none" role="alert">
+    This is a success alert—check it out!
+</div>
+<div class="alert alert-danger display-none" role="alert">
+    This is a danger alert—check it out!
+</div>
+<div class="alert alert-warning display-none" role="alert">
+    検索結果：０件
+</div>
+<div class="row align-items-center row-layout-top" style="margin-top: 1rem;">
+    <div class="col-sm1">
+        &nbsp;&nbsp;&nbsp;<button class="btn btn-primary" id="detailAddRowBtn">行追加</button>
+    </div>
+</div>
+<!-- 結果一覧 -->
+<div class="row align-items-center ">
+    <div class="col">
+        <p></p>
+        <div id="detailTbl" class="table table-bordered"></div>
+    </div>
+</div>
+
+<div class="row align-items-center">
+    <div class="col-sm1">
+        &nbsp;&nbsp;&nbsp;<button type="button" class="btn btn-primary" id="updateBtn" >更新</button>
+    </div>
+    
+</div>
+<script src="./js/AA091.js" type="text/javascript"></script>

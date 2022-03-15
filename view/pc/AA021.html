@@ -1,0 +1,254 @@
+<!-- コンテナ -->
+<div class="row" style="margin: 5px;"></div>
+<div class="row">
+    <div class="agmc-ma-col col">
+        <h5 class="row-layout-top">AA021 検査結果一覧</h5>
+    </div>
+</div>
+<p></p>
+<form id="serch-form">
+    <div class="row align-items-center row-layout-top">
+        <!-- 左半分 -->
+        <div class="col-sm">
+            <div class="accordion" id="accordionExample">
+                <div class="card">
+                    <div class="card-header" id="headingOne">
+                        <h2 class="mb-0">
+                            <button tabindex="1" class="btn btn-link btn-block text-left" type="button" data-toggle="collapse"
+                                data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" onFocus="document.querySelector('#searchTargetSystemCmb').focus()">
+                                検索条件
+                            </button>
+                        </h2>
+                    </div>
+                    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
+                        data-bs-parent="#accordionExample">
+                        <div class="card-body">
+                            <div class="row align-items-center ">
+                                <div class="col-auto">
+                                    <label for="searchTargetSystemCmb" class="col-form-label label-item">検査区分</label>                                    
+                                </div>
+                                <div class="col-auto col-sm-2">
+                                    <select tabindex="2" class="form-control" id="searchTargetSystemCmb">
+                                    </select>
+                                </div>
+                                <div class="col-auto">
+                                    <label for="searchNotificationIdTxt" class="col-form-label label-item">通知ID</label>
+                                </div>
+                                <div class="col-auto col-sm-2">
+                                    <input type="text" class="form-control" id="searchNotificationIdTxt">
+                                </div>
+                                <div class="col-auto">
+                                    <label for="searchPatientIdLst" class="col-form-label label-item">患者ID</label>
+                                </div>
+                                <div class="col-auto col-sm-2">
+                                    <input type="text" class="form-control" id="searchPatientIdLst" list="patientList">
+                                    <datalist id="patientList">
+                                    </datalist>
+                                </div>
+                                <div class="col-auto">
+                                    <label for="searchCollectDtCal" class="col-form-label label-item">採取日</label>
+                                </div>                                
+                                <div class="col-auto col-sm-2">
+                                    <input type="text" class="form-control" id="searchCollectDtCal">
+                                </div>
+                            </div>
+                            <div class="row align-items-center row-layout-top">
+                                <div class="col-auto">
+                                    <button type="button" class="btn btn-primary float-start" id="searchBtn"><i
+                                            class="fas fa-search"></i>検索</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 右半分 -->
+        <!-- <div class="col-sm">
+        <-- 見えない領域 hiddon->
+        <div>
+        </div>
+    </div> -->
+    </div>
+</form>
+<div class="alert alert-success display-none" role="alert">
+    This is a success alert—check it out!
+</div>
+<div class="alert alert-danger display-none" role="alert">
+    This is a danger alert—check it out!
+</div>
+<div class="alert alert-warning display-none" role="alert">
+    検索結果：０件
+</div>
+<!-- 検索結果一覧行 -->
+<div class="row row-layout-top" style="margin-top: 1rem;">
+    <div class="col">
+        <!-- 検索結果 -->
+        <div id="detailTbl" class="table-sm"></div>
+    </div>
+</div>
+
+<!-- Tab -->
+<div class="row row-layout-top content">
+    <div class="col">
+        <ul class="nav nav-tabs" id="infoTab" role="tablist">
+            <li class="nav-item" role="presentation">
+                <a class="nav-link active" id="kentai-tab" data-bs-toggle="tab" href="#kentai" role="tab"
+                    aria-controls="home" aria-selected="true" onFocus="document.querySelector('#searchTargetSystemCmb').focus()">詳細</a>
+            </li>
+            <!-- <li class="nav-item" role="presentation">
+              <a class="nav-link" id="biseibutsu-tab" data-bs-toggle="tab" href="#biseibutsu" role="tab" aria-controls="profile" aria-selected="false">微生物</a>
+            </li> -->
+        </ul>
+        <!-- コンテンツ -->
+        <div class="tab-content" id="infoTabContent">
+            <!-- 検体検査 -->
+            <div class="tab-pane fade show active" id="kentai" role="tabpanel" aria-labelledby="kentai-tab">
+                <div class="row row-layout-top">
+
+                    <div class="col-6 table-responsive">
+                        <div class="base-info display-none">
+
+                            <span>患者情報</span>
+                            <table class="table table-bordered border-primary">
+                                <thead></thead>
+                                <tbody>
+                                    <tr>
+                                        <td width="40%" style="background:#26A69A;color: white;"><label>通知ID</label></td>
+                                        <td><span class="detail1NotificationIdLb"></span></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="background:#26A69A;color: white;"><label>患者ID</label></td>
+                                        <td><span class="detail1PatientIdLbl"></span></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="background:#26A69A;color: white;">
+                                            <label">患者氏名</label>
+                                        </td>
+                                        <td><span class="detail1PatientNmLbl"></span></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="background:#26A69A;color: white;"><label>年齢</label></td>
+                                        <td><span class="detail1AgeLbl"></span></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="background:#26A69A;color: white;"><label>性別</label></td>
+                                        <td><span class="detail1GenderLbl"></span></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="background:#26A69A;color: white;"><label>入外区分</label></td>
+                                        <td><span class="detail1HospitalizationCdLbl"></span></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="background:#26A69A;color: white;"><label>診療科</label></td>
+                                        <td><span class="detail1departmentNmLbl"></span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+
+                    <div class="col-6 table-responsive">
+                        <div class="kentai-kensa display-none">
+                            <div>検体検査結果</div>
+                            <table class="table table-bordered border-primary">
+                                <thead></thead>
+                                <tbody>
+                                    <tr>
+                                        <td width="40%" style="background:#26A69A;color: white;"><label>検査日時</label></td>
+                                        <td><span class="detail2ExaminationDtLbl"></span></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="background:#26A69A;color: white;"><label>検査結果日時</label></td>
+                                        <td><span class="detail2ResultDtLbl"></span></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="background:#26A69A;color: white;"><label>検体</label></td>
+                                        <td><span class="detail2SpecimenNmLbl"></span></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="background:#26A69A;color: white;"><label>検査項目</label></td>
+                                        <td><span class="detail2ExaminationNmLbl"></span></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="background:#26A69A;color: white;">
+                                            <label">検査結果値</label>
+                                        </td>
+                                        <td><span class="detail2ResultValueLbl"></span></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="background:#26A69A;color: white;"><label>単位</label></td>
+                                        <td><span class="detail2UnitLbl"></span></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="background:#26A69A;color: white;"><label>下限値</label></td>
+                                        <td><span class="detail2LowValueLbl"></span></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="background:#26A69A;color: white;"><label>上限値</label></td>
+                                        <td><span class="detail2UpperValueLbl"></span> </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="background:#26A69A;color: white;"><label>異常判定</label></td>
+                                        <td><span class="detail2JudgeLbl"></span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="saikin-ippan display-none">
+                            <div>細菌検査結果</div>
+                            <table class="table table-bordered border-primary">
+                                <thead></thead>
+                                <tbody>
+                                    <tr>
+                                        <td width="40%" style="background:#26A69A;color: white;"><label>検査区分</label></td>
+                                        <td><span class="detailTbl3TargetSystemNmLbl"></span></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="background:#26A69A;color: white;"><label>採取日</label></td>
+                                        <td><span class="detailTbl3CollectDtLbl"></span></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="background:#26A69A;color: white;"><label>最終報告日時</label></td>
+                                        <td><span class="detailTbl3ResultDtLbl"></span></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="background:#26A69A;color: white;"><label>検体</label></td>
+                                        <td><span class="detailTbl3SpecimenNmLbl"></span></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="background:#26A69A;color: white;">
+                                            <label">検査方法</label>
+                                        </td>
+                                        <td><span class="detailTbl3SmearNmLbl"></span></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="background:#26A69A;color: white;"><label>菌名</label></td>
+                                        <td><span class="detailTbl3VirusNmLbl"></span></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="background:#26A69A;color: white;"><label>菌量</label></td>
+                                        <td><span class="detailTbl3QuantityNmLbl"></span></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="background:#26A69A;color: white;"><label>結果</label></td>
+                                        <td><span class="detailTbl3ResultNmLbl"></span> </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="background:#26A69A;color: white;"><label>コメント</label></td>
+                                        <td><span class="detailTbl3CommentLbl"></span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<p></p>
+
+<script src="./js/AA021.js" type="text/javascript"></script>

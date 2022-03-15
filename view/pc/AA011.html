@@ -1,0 +1,375 @@
+<link href="./lib/lou-multi-select/css/multi-select.css" media="screen" rel="stylesheet" type="text/css" />
+<!-- コンテナ -->
+<div class="row row-layout-top"></div>
+<div class="row">
+    <div class="agmc-ma-col col">
+        <h5 class="row-layout-top">AA011 通知管理</h5>
+    </div>
+</div>
+<p style="height: 1px;">
+    <br>
+</p>
+
+<form id="serch-form">
+    <div class="row align-items-center row-layout-top">
+        <div class="col-sm">
+            <div class="accordion" id="accordionExample">
+                <div class="card">
+                    <div class="card-header" id="headingOne">
+                        <h2 class="mb-0">
+                            <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse"
+                                data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                検索条件
+                            </button>
+                        </h2>
+                    </div>
+                    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
+                        data-parent="#accordionExample">
+                        <div class="card-body">
+                            <div class="row align-items-center ">
+                                <div class="col-auto">
+
+                                    <div class="custom-control custom-switch">
+                                        <input type="checkbox" class="custom-control-input" id="pageRefreshSwc"
+                                            name="pageRefreshSwc" checked>
+                                        <label class="custom-control-label" for="pageRefreshSwc">ページ自動更新</label>
+                                    </div>
+                                </div>
+                                <div class="col-auto">
+                                    <span>最終更新日時：</span>
+                                    <span id="timeLbl">2021/11/17 9:47</span>
+                                </div>
+                            </div>
+                            <div class="row align-items-center row-layout-top">
+                                <div class="col-auto">
+                                    <label for="searchPatientIdLst" class="col-form-label label-item">患者ID</label>
+                                </div>
+                                <div class="col-sm-2">
+                                    <input type="text" class="form-control " id="searchPatientId"
+                                        list="searchPatientIdLst" autofocus>
+                                    <datalist id="searchPatientIdLst">
+                                    </datalist>
+                                </div>
+                                    <div class="col-auto">
+                                        <label for="submit-status" class="col-form-label label-item">送信状況</label>
+                                    </div>
+                                    <div class="col-auto">
+                                        <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="processOptions"
+                                            id="searchUnsentOpt" value="1">
+                                        <label class="form-check-label" for="searchUnsentOpt">未送信</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="processOptions"
+                                            id="searchSentOpt" value="2">
+                                        <label class="form-check-label" for="searchSentOpt">送信済</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="processOptions"
+                                            id="searchAllOpt" value="3" checked>
+                                        <label class="form-check-label" for="searchAllOpt">すべて</label>
+                                    </div>
+                                </div>
+
+                                    <div class="col-auto">
+                                        <label for="kidoku-status" class="col-form-label label-item">既読ステータス</label>
+                                    </div>
+                                    <div class="col-auto">
+                                        <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="checkbox" value="1" checked
+                                            id="searchUnreadChk">
+                                        <label class="form-check-label" for="searchUnreadChk">
+                                            未読
+                                        </label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="checkbox" value="1" 
+                                            id="searchReadChk">
+                                        <label class="form-check-label" for="searchReadChk">
+                                            既読
+                                        </label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="checkbox" value="1" checked
+                                            id="searchPartiallyReadChk">
+                                        <label class="form-check-label" for="searchPartiallyReadChk">
+                                            一部既読
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-auto">
+                                    <label for="searchDeleteFlgChk" class="col-form-label label-item">削除フラグ</label>
+                                </div>
+                                <div class="col-auto">
+                                    <input class="col-check-input" type="checkbox" value="1" id="searchDeleteFlgChk">
+                                </div>
+                                
+                            </div>
+                            <div class="row row-layout-top">
+                                <div class="col-auto">
+                                    <button type="button" class="btn btn-primary float-start" id="searchBtn"><i
+                                            class="fas fa-search"></i>検索</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+<div class="alert alert-success display-none" role="alert">
+    This is a success alert—check it out!
+</div>
+<div class="alert alert-danger display-none" role="alert">
+    This is a danger alert—check it out!
+</div>
+<div class="alert alert-warning display-none" role="alert">
+    検索結果：０件
+</div>
+<!-- 検索結果一覧 -->
+<div class="row align-items-center " style="margin-top: 1rem;">
+    <div class="col">
+        <div id="detailTblAA011" class="table table-bordered"></div>
+    </div>
+</div>
+
+<div class="row align-items-center ">
+    <div class="col-sm1">
+        &nbsp;&nbsp;&nbsp;<button type="button" id="sendBtn" class="btn btn-primary">通知送信</button>
+    </div>
+</div>
+
+<!--通知先選択  -->
+<!-- Modal -->
+<div class="modal " id="selectNoticeModal" data-backdrop="static" data-keyboard="false" tabindex="-1"
+    aria-labelledby="selectNoticeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="selectNoticeModalLabel">通知先選択</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <select id='detailDepartmentOptg' multiple='multiple'>
+                                <optgroup label='心療内科'>
+                                    <option value='G0100001'>A医師</option>
+                                    <option value='G0100002' selected>B医師</option>
+                                </optgroup>
+                                <optgroup label='呼吸器内科'>
+                                    <option value='G0200003'>C医師</option>
+                                    <!-- <option value='4' disabled>Darth Vader</option> -->
+                                </optgroup>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="closeConfirmBtn" class="btn btn-secondary" data-dismiss="modal">閉じる</button>
+                <button type="button" class="btn btn-primary" id="selectConfirmBtn">選択確定</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--Modal  通知履歴-->
+<!-- 少しずるします。見えないボタンをクリックしたことにします -->
+<button type="button" class="btn btn-primary kidoku-log display-none" data-toggle="modal" data-target="#kidokuLogModal">
+    既読ログ確認
+</button>
+<!-- Modal -->
+<div class="modal " id="kidokuLogModal" data-backdrop="static" data-keyboard="false" tabindex="-1"
+    aria-labelledby="kidokuLogModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="kidokuLogModalLabel">既読ログ確認</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div>今回の通知内容</div>
+                            <table class="table table-bordered border-primary table-sm">
+                                <thead></thead>
+                                <tbody>
+                                    <tr>
+                                        <td style="background:#26A69A;color: white;"><label>患者ID</label></td>
+                                        <td style="background:#26A69A;color: white;"><label>患者氏名</label></td>
+                                        <td style="background:#26A69A;color: white;"><label>検査項目</label></td>
+                                        <td style="background:#26A69A;color: white;"><label>結果値</label></td>
+                                        <td style="background:#26A69A;color: white;"><label>単位</label></td>
+                                        <td style="background:#26A69A;color: white;"><label>送信日時</label></td>
+                                    </tr>
+                                    <tr>
+                                        <td><span id="headrPatientIdLbl"></span></td>
+                                        <td><span id="headrPatientNmLbl"></span></td>
+                                        <td><span id="headrExaminationNmLbl"></span></td>
+                                        <td><span id="headrResultValueLbl"></span></td>
+                                        <td><span id="headrUnitLbl"></span></td>
+                                        <td><span id="headrSendDtLbl"></span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-7">
+                            <div>既読状況</div>
+                            <div id="detailReadTbl" class="table table-bordered"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>
+                <!-- <button type="button" class="btn btn-primary">Understood</button> -->
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary history-val display-none" data-toggle="modal" data-target="#historyModal">
+    前回値確認画面
+</button>
+
+<!-- Modal -->
+<div class="modal " id="historyModal" data-backdrop="static" data-keyboard="false" tabindex="-1"
+    aria-labelledby="historyModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="historyModalLabel">前回値確認</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div>今回の通知内容</div>
+                            <table class="table table-bordered border-primary table-sm">
+                                <thead></thead>
+                                <tbody>
+                                    <tr>
+                                        <td style="background:#26A69A;color: white;"><label>患者ID</label></td>
+                                        <td style="background:#26A69A;color: white;"><label>患者氏名</label></td>
+                                        <td style="background:#26A69A;color: white;"><label>依頼科</label></td>
+                                        <td style="background:#26A69A;color: white;"><label>検査結果確定日時</label></td>
+                                        <td style="background:#26A69A;color: white;"><label>検査項目</label></td>
+                                        <td style="background:#26A69A;color: white;"><label>結果値</label></td>
+                                        <td style="background:#26A69A;color: white;"><label>単位</label></td>
+                                    </tr>
+                                    <tr>
+                                        <td><span id="headerPatientIdLbl"></span></td>
+                                        <td><span id="headerPatientNmLbl"></span></td>
+                                        <td><span id="headerDepartmentLbl"></span></td>
+                                        <td><span id="headerResultDtLbl"></span></td>
+                                        <td><span id="headerExaminationNmLbl"></span></td>
+                                        <td><span id="headerResultValueLbl"></span></td>
+                                        <td><span id="headerUnitLbl"></span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-7">
+                            <div>通知履歴</div>
+                            <div id="detailHistryTbl" class="table table-bordered"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>
+                <!-- <button type="button" class="btn btn-primary">Understood</button> -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary history-micro-val display-none" data-toggle="modal"
+    data-target="#historyModalMicro">
+    前回値確認画面
+</button>
+
+<!-- Modal -->
+<div class="modal " id="historyModalMicro" data-backdrop="static" data-keyboard="false" tabindex="-1"
+    aria-labelledby="historyModalMicroLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="historyModalMicroLabel">前回値確認</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div>今回の通知内容</div>
+                            <table class="table table-bordered border-primary table-sm">
+                                <thead></thead>
+                                <tbody>
+                                    <tr>
+                                        <td style="background:#26A69A;color: white;"><label>患者ID</label></td>
+                                        <td style="background:#26A69A;color: white;width:100px;"><label>患者氏名</label></td>
+                                        <td style="background:#26A69A;color: white;"><label>依頼科</label></td>
+                                        <td style="background:#26A69A;color: white;"><label>最終報告日時</label></td>
+                                        <td style="background:#26A69A;color: white;"><label>検査区分</label></td>
+                                        <td style="background:#26A69A;color: white;"><label>検査方法</label></td>
+                                        <td style="background:#26A69A;color: white;"><label>検体</label></td>
+                                        <td style="background:#26A69A;color: white;"><label>菌名</label></td>
+                                        <td style="background:#26A69A;color: white;width:50px;"><label>結果</label></td>
+                                        <td style="background:#26A69A;color: white;"><label>コメント</label></td>
+                                    </tr>
+                                    <tr>
+                                        <td><span id="headerMicroPatientIdLbl"></span></td>
+                                        <td><span id="headerMicroPatientNmLbl"></span></td>
+                                        <td><span id="headerMicroDepartmentLbl"></span></td>
+                                        <td><span id="headerMicroResultDtLbl"></span></td>
+                                        <td><span id="headerMicroTargetSystemNmLbl"></span></td>
+                                        <td><span id="要確認"></span></td>
+                                        <td><span id="headrMicroSpecimenNmLbl"></span></td>
+                                        <td><span id="headerMicroVirusNmLbl"></span></td>
+                                        <td><span id="headerMicroResultNmLbl"></span></td>
+                                        <td><span id="headerMicroCommentLbl"></span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div>通知履歴</div>
+                            <div id="detailHistryMiroTbl" class="table table-bordered"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>
+                <!-- <button type="button" class="btn btn-primary">Understood</button> -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="./lib/lou-multi-select/js/jquery.multi-select.js" type="text/javascript"></script>
+<script src="./js/AA011.js" type="text/javascript"></script>

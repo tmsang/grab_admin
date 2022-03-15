@@ -1,0 +1,18 @@
+@charset "utf-8";
+//sassは、ファイル名の接頭文字列に_（アンダーバー）が付く場合コンパイル対象にならない
+//プロパティだけ管理したい場合に役に立つ
+//共通CSS群
+//フォント　日本語綺麗に表示させるフォント指定 メイリオ
+$FONT_FAMILY : "Helvetica Neue","Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+//属性非表示(hidden)
+$HIDDEN_DISPLAY :hidden;
+//属性非表示
+$NONE_DISPLAY :none;
+
+//メインカラー
+//尼崎メインカラー
+$MAIN_COLOR :#42A5F5;
+//尼崎サブカラー
+$SUB_COLOR:#26A69A;
+//尼崎アクセントカラー
+$ACCENT_COLOR:#FFCA28;
