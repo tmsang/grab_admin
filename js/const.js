@@ -1,8 +1,8 @@
 
 /*********************************************************************
- *固定パラメータ設定
+ * CONFIG
  *********************************************************************/
-//API情報
+//API
 const API_HOST = 'https://172.25.129.73:44331';
 const URL_LOGIN = API_HOST + "/api/admin/login";
 
@@ -12,19 +12,18 @@ const URL_ITEMMST = API_HOST + "/ALERT/REST/ItemMst";
 const URL_NOTIFICATIONINFODISPLAY = API_HOST + "/ALERT/REST/NotificationInfo/Display";
 const URL_NOTIFICATIONINFO = API_HOST + "/ALERT/REST/NotificationInfo";
 
-
 //AA091
-const URL_USERMST                 = API_HOST + "/ALERT/REST/UserMst";
-const URL_DESTINATIONMSTDISPLAY   = API_HOST + "/ALERT/REST/DestinationMst/Display";
-const URL_DESTINATIONMST          = API_HOST + "/ALERT/REST/DestinationMst";
+const URL_USERMST = API_HOST + "/ALERT/REST/UserMst";
+const URL_DESTINATIONMSTDISPLAY = API_HOST + "/ALERT/REST/DestinationMst/Display";
+const URL_DESTINATIONMST = API_HOST + "/ALERT/REST/DestinationMst";
 
 //AA092
-const URL_DEPARTMENTMST           = API_HOST + "/ALERT/REST/DepartmentMst";
-const URL_TERMMSTDISPLAY          = API_HOST + "/ALERT/REST/TermsMst/Display";
-const URL_TERMMST                 = API_HOST + "/ALERT/REST/TermsMst";
-const URL_EXAMINATIONMST          = API_HOST + "/ALERT/REST/ExaminationMst";
-const URL_VIRUSMST                = API_HOST + "/ALERT/REST/VirusMst";
-const URL_SPECIMENMST             = API_HOST + "/ALERT/REST/SpecimenMst";
+const URL_DEPARTMENTMST = API_HOST + "/ALERT/REST/DepartmentMst";
+const URL_TERMMSTDISPLAY = API_HOST + "/ALERT/REST/TermsMst/Display";
+const URL_TERMMST = API_HOST + "/ALERT/REST/TermsMst";
+const URL_EXAMINATIONMST = API_HOST + "/ALERT/REST/ExaminationMst";
+const URL_VIRUSMST = API_HOST + "/ALERT/REST/VirusMst";
+const URL_SPECIMENMST = API_HOST + "/ALERT/REST/SpecimenMst";
 
 //AB021
 const URL_NOTIFICATIONINFOVERIFICATION = API_HOST + "/ALERT/REST/NotificationInfo/Verification";
@@ -39,14 +38,14 @@ const GM002 = "GM002";//検査アラート(SP)
 const SESSION_KEY = "user";
 const SESSION_TIME_KEY = "sessionTime";
 
-//
 const DATE_FORMAT = "YYYY-MM-DD";
 const DATE_DEFAULT_BEGIN = "1900-01-01";
 const DATE_DEFAULT_END = "2999-12-31";
 const TARGETSYSTEMKBN_SPECIMEN = "1"
-const TARGETSYSTEMKBN_GENERAL  = "2"
-const TARGETSYSTEMKBN_ACID     = "3"
-//key
+const TARGETSYSTEMKBN_GENERAL = "2"
+const TARGETSYSTEMKBN_ACID = "3"
+
+// key press
 const KEY_CODE_ENTER = 13;
-const KEY_CODE_ESC   = 27;
-const KEY_CODE_TAB   = 9;
+const KEY_CODE_ESC = 27;
+const KEY_CODE_TAB = 9;

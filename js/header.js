@@ -1,8 +1,12 @@
 var master = "";
+
 $('#menu').empty();
+
 $.getJSON("data/menu.json", function (data) {
-    if (navigator.userAgent.indexOf('iPhone') > 0 || navigator.userAgent.indexOf('Android') > 0 && navigator.userAgent.indexOf('Mobile') > 0) {
-        // スマートフォン
+    if (navigator.userAgent.indexOf('iPhone') > 0
+        || navigator.userAgent.indexOf('Android') > 0
+        && navigator.userAgent.indexOf('Mobile') > 0) {
+        // TODO: Mobile    
         master = data.sp;
         for (var i = 0; i < master.length; i++) {
             $('#menu').append(
@@ -10,13 +14,14 @@ $.getJSON("data/menu.json", function (data) {
             );
         }
         return;
-
-    } else if (navigator.userAgent.indexOf('iPad') > 0 || navigator.userAgent.indexOf('Android') > 0) {
-        // TODO タブレット向けの記述 現在なし
+    }
+    else if (navigator.userAgent.indexOf('iPad') > 0
+        || navigator.userAgent.indexOf('Android') > 0) {
+        // TODO: Tablet
         return;
-
-    } else {
-        //PC
+    }
+    else {
+        // TODO: PC
         master = data.pc;
 
         var param = getQueryString();

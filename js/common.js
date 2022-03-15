@@ -1,12 +1,12 @@
 /*********************************************************************
-*共通関数
-*ログイン状態チェック
-*ログアウト
-*セッションタイムアウト管理
-*メッセージ取得
+* Common function
+* Login status check
+* Logout
+* Session timeout management
+* Get message
 *********************************************************************/
 var COMMON = (function () {
-    //Tab順及びEnterキーでの項目移動順設定
+    //Tab & Enter
     function setEnterKeyAsTab() {
         $('body').on('keydown', 'input, select, textarea', function (e) {
             var self = $(this),
@@ -26,22 +26,19 @@ var COMMON = (function () {
             }
         });
     }
-    //ログイン状況をチェックする(モック用)
+    
     function chkLoginStatus() {
         var user = sessionGet(SESSION_KEY);
         return (user != null);
     }
-
-    //セッションが有効期限切れの場合は、強制的に再ログインを行う。
+    
     function chkSessionTimeOut() {
         if (!chkLoginStatus())
             return logout();
         return false;
     }
-
-    //ログアウト
-    function logout() {
-        console.log('logoutに来ました');
+    
+    function logout() {        
         var login = sessionStorage.getItem(SESSION_KEY);
         if (login) {
             sessionStorage.removeItem(SESSION_KEY);
@@ -49,8 +46,7 @@ var COMMON = (function () {
         window.location.href = "./";
         return true;
     }
-
-    //セッションストレージから取得、期限切れと解除する。
+    
     function sessionGet(key) {
         var stringValue = window.sessionStorage.getItem(key);
         if (stringValue !== null) {
@@ -66,8 +62,7 @@ var COMMON = (function () {
         }
         return null;
     }
-
-    //セッションストレージに設定する。
+    
     function sessionSet(key, value) {
         changeSessionTime();
 
@@ -77,12 +72,10 @@ var COMMON = (function () {
     function changeSessionTime(expirationInMin) {
         if (!expirationInMin)
             expirationInMin = 30;
-        var expirationDate = new Date(new Date().getTime() + (60000 * expirationInMin));
-        //update time 
+        var expirationDate = new Date(new Date().getTime() + (60000 * expirationInMin));         
         sessionStorage.setItem(SESSION_TIME_KEY, expirationDate.toISOString());
     }
-
-    //メッセージIDで取得
+    
     function getMessageById(id, param1, param2) {
         var message = $.grep(messages, function (n, i) {
             return n.id == id;
@@ -92,14 +85,12 @@ var COMMON = (function () {
         }
         return id + ":メッセージ内容が見つけません";//見つけません。
     }
-
-    //メッセージIDで表示
+    
     function showMessageById(id, param1, param2, successFlg) {
         var message = getMessageById(id, param1, param2);
         showMessage(message, successFlg);
     }
-
-    //メッセージを表示
+    
     function showMessage(message, successFlg) {
         hideMessage();
         let cssClass = ".alert-danger";
