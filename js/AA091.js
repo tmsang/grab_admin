@@ -1,3 +1,17 @@
+/*=============================================
+    AA09x: action on Master Data
+
+    AA091: enable, disable, block Account
+    
+    FLOW:
+        1. Search & load Data
+            . Define Tablulator (grid) [cell, row, column] + events
+            . Fill data into
+        2. Add record & save
+        3. Edit record & save
+        4. Delete record & save
+==============================================*/
+
 const mid_char = " ";
 var listUserIdForDatalist = '';
 
@@ -79,7 +93,7 @@ const AA091 = (function () {
 
     }
 
-    function search(userId, delFlg, exTable, callback) {
+    function search(userId, delFlg, mainGrid, callback) {
         API.GET(URL_DESTINATIONMSTDISPLAY
             + "?token=" + COMMON.getToken()
             + "&hospitalCd=" + COMMON.getHospitalCd()
@@ -92,11 +106,11 @@ const AA091 = (function () {
                 }
                 //error　ログイン認証失敗
                 else if (data.result == -1) {
-                    exTable.clearData();
+                    mainGrid.clearData();
                     COMMON.showSearchResult();
                 }
                 else if (data.result == -2) {
-                    exTable.clearData();
+                    mainGrid.clearData();
                     COMMON.showSearchResult("AA021_901");
                 }
                 else {
@@ -127,7 +141,7 @@ const AA091 = (function () {
 
         if (!checkData.terminalInfo || checkData.terminalInfo.trim() === "")
             msg = msg + "<br>" + COMMON.getMessageById("COM_902", "通知先端末情報");
-            
+
         if (!msg)
             msg = isDuplicate(checkData, tableData);
 
@@ -152,13 +166,13 @@ const AA091 = (function () {
 
 
 const AA091_GUI = (function () {
-    var exTable;
+    var mainGrid;
     var listUserId = [];
     var detailListUserId = [];
 
     function init() {
         COMMON.setEnterKeyAsTab();
-        exTable = loadInitTable();
+        mainGrid = defineGridStructure();
         loadData();
 
         $('#updateBtn').on('click', updateServerAll);
@@ -181,8 +195,8 @@ const AA091_GUI = (function () {
             $("#userList").html(listUserIdForDatalist);
     }
 
-    function loadInitTable() {
-        //
+    function defineGridStructure() 
+    {        
         var isInputUser = function (cell, value, parameters) {
             if (!value) {
                 COMMON.showMessageById("COM_902", "利用者");
@@ -201,7 +215,7 @@ const AA091_GUI = (function () {
             return true;
         };
 
-        //Create Date Editor
+        // Create Date Editor
         var dateEditor = function (cell, onRendered, success, cancel) {
             //cell - the cell component for the editable cell
             //onRendered - function to call when the editor has been rendered
@@ -219,8 +233,8 @@ const AA091_GUI = (function () {
             input.style.padding = "4px";
             input.style.width = "100%";
             input.style.boxSizing = "border-box";
-            if (cellValue)
-                input.value = cellValue;
+            if (cellValue) input.value = cellValue;
+
             onRendered(function () {
                 input.focus();
                 input.style.height = "100%";
@@ -228,9 +242,9 @@ const AA091_GUI = (function () {
                 $(".tabulator-edit-select-list").hide();
 
                 $(input).datepicker(COMMON.dateSetting)
-                .on("changeDate", function (e) {
-                    onChange(e);
-                }); //turn input into datepicker 
+                    .on("changeDate", function (e) {
+                        onChange(e);
+                    }); //turn input into datepicker 
             });
 
             function onChange(e) {
@@ -264,7 +278,7 @@ const AA091_GUI = (function () {
 
         var cell_user = function customConditionFormatter(cell) {
             var value = cell.getValue();
-    
+
             for (var i = 0; i < detailListUserId.length; i++) {
                 if (detailListUserId[i].value == value) {
                     // Store value to cell dataset
@@ -275,12 +289,12 @@ const AA091_GUI = (function () {
             return value;
         }
 
-        // Create table
+        // Create structure grid (tabulator)
         return new Tabulator("#detailTbl", {
-            layout: COMMON.layout,//カラムコンテナに合わせる
+            layout: COMMON.layout,                  
             pagination: COMMON.pagination,
-            paginationSize: COMMON.paginationSize,//5行でページング
-            movableColumns: COMMON.movableColumns,//カラムの移動を許可する
+            paginationSize: COMMON.paginationSize,  // 5 lines
+            movableColumns: COMMON.movableColumns,  // allow column move
             locale: COMMON.locale,
             langs: COMMON.langs,
             addRowPos: "top",
@@ -289,28 +303,29 @@ const AA091_GUI = (function () {
                 cell.getRow().select();
             },
             keybindings: {
-                "navNext": "tab", //bind redo function to ctrl + r
+                "navNext": "tab",                   // bind redo function to ctrl + r
             },
             columns: [
-                { title: "通知先ID", field: "destinationId", width: 150 },
+                { 
+                    title: "Id", field: "Id", width: 150 
+                },
                 {
-                    title: "利用者", field: "userId", width: 200, editor: "autocomplete",
+                    title: "Full Name", field: "FullName", width: 200, editor: "autocomplete",
                     editorParams: function (cell) {
-
                         return {
                             showListOnEmpty: true,
                             freetext: false,
                             // allowEmpty: true, 
                             values: detailListUserId
                         };
-                    },  
+                    },
                     formatter: cell_user,
                     validator: [{
                         type: isInputUser
                     }]
                 },
                 {
-                    title: "通知先端末情報", field: "terminalInfo", width: 200, editor: "input",
+                    title: "Email", field: "Email", width: 200, editor: "input",
                     editorParams: {
                         elementAttributes: {
                             maxlength: AA091.MAX_TERMINALINFO,
@@ -321,19 +336,13 @@ const AA091_GUI = (function () {
                     }]
                 },
                 {
-                    title: "開始日", field: "startDt", hozAlign: "left", width: 191, editor: dateEditor, formatter: function (cell) {
+                    title: "Happen Date", field: "HappenDate", hozAlign: "left", width: 191, editor: dateEditor, formatter: function (cell) {
                         const value = cell.getValue();
                         return !value ? "" : moment(value).format(DATE_FORMAT);
                     }
-                },
+                },                
                 {
-                    title: "終了日", field: "endDt", hozAlign: "left", width: 190, editor: dateEditor, formatter: function (cell) {
-                        const value = cell.getValue();
-                        return !value ? "" : moment(value).format(DATE_FORMAT);
-                    }
-                },
-                {
-                    title: "備考", field: "remarks", formatter: "textarea", width: 200, editor: "textarea",
+                    title: "Description", field: "Description", formatter: "textarea", width: 200, editor: "textarea",
                     editorParams: {
                         elementAttributes: {
                             maxlength: AA091.MAX_REMARK,
@@ -341,13 +350,12 @@ const AA091_GUI = (function () {
                     }
                 },
                 {
-                    title: "削除", field: "deleteFlg", formatter: "tickCross", width: 100, formatter: function (cell) {
+                    title: "Delete", field: "deleteFlg", formatter: "tickCross", width: 100, formatter: function (cell) {
                         if (cell.getValue()) {
                             return '<input type="checkbox" class="chkDel" name="chkDel" checked />'
                         } else {
                             return '<input type="checkbox" class="chkDel" name="chkDel" />'
                         }
-
                     },
                     cellClick: function (e, cell) {
                         var element = cell.getElement();
@@ -384,7 +392,7 @@ const AA091_GUI = (function () {
 
     // Add row click
     function addNewRow() {
-        exTable.addRow({
+        mainGrid.addRow({
             "destinationId": undefined,
             "departmentCd": undefined,
             "departmentNm": undefined,
@@ -402,23 +410,24 @@ const AA091_GUI = (function () {
 
     // Search click
     function searchData(holdMsgFlg) {
-        exTable.clearData();
+        mainGrid.clearData();
         COMMON.hideMessage();
         search();
     };
+
     function search() {
         AA091.search($('[name="searchUserIdLst"]').val().split(mid_char)[0],
             ($('#searchDeleteFlgChk').prop('checked') ? "1" : "0"),
-            exTable,
+            mainGrid,
             function (result) {
-                exTable.setData(result);
+                mainGrid.setData(result);
             })
     }
 
     // Update click
     function updateServerAll() {
-        if (AA091.checkValidateEditData(exTable, listUserId))
-            AA091.updateData(exTable.getSelectedRows(), function (data) {
+        if (AA091.checkValidateEditData(mainGrid, listUserId))
+            AA091.updateData(mainGrid.getSelectedRows(), function (data) {
                 if (data.result == 0) {
                     COMMON.showMessageById("COM_001", "", "", "success");
                     search();
@@ -429,8 +438,8 @@ const AA091_GUI = (function () {
             });
     };
 
-    $("#updateBtn").keydown(function(e){
-        if( e.keyCode === KEY_CODE_TAB ) {
+    $("#updateBtn").keydown(function (e) {
+        if (e.keyCode === KEY_CODE_TAB) {
             document.querySelector('.focusFirstItem').focus();
         }
     });
@@ -439,6 +448,7 @@ const AA091_GUI = (function () {
         init: init,
     };
 })();
+
 $(document).ready(function () {
     AA091_GUI.init();
 });
