@@ -1,6 +1,5 @@
-const AA001 = (function () 
-{
-    function init() {        
+const AA001 = (function () {
+    function init() {
         $('#btnLogin').on('click', login);
         $("#inputId").keypress(validInput);
         COMMON.setEnterKeyAsTab();
@@ -10,15 +9,15 @@ const AA001 = (function ()
         return (evt.key.match(/[a-zA-Z0-9@.-_]/g) != null);
     }
 
-    function login() {        
+    function login() {
         var loginId = $("#inputId").val();
-        var password = $("#inputPassword").val();        
-        
+        var password = $("#inputPassword").val();
+
         if (loginId == "") {
             COMMON.showMessageById("COM_902", "LoginId");
             $("#inputId").focus();
             return;
-        }        
+        }
         if (password == "") {
             COMMON.showMessageById("COM_902", "パスワード");
             $("#inputPassword").focus();
@@ -26,17 +25,17 @@ const AA001 = (function ()
         }
 
         sessionStorage.removeItem(SESSION_KEY);
-        API.POST(URL_LOGIN, { 'Type': 'admin', 'Email': loginId, 'Password': password }, function (user) {           
-            if (user) {
+        API.POST(URL_LOGIN, { 'Type': 'admin', 'Email': loginId, 'Password': password }, function (user) {
+            if (user) {                
                 COMMON.sessionSet(SESSION_KEY, user);
-                window.location.href = "./index.html?gmid=AA091";
-                return;                
+                window.location.href = "./index.html?gmid=AA072";
+                return;
             }
 
             COMMON.showMessageById("AA001_001");
             $("#inputId").focus();
-        });        
-    }    
+        }, true);
+    }
 
     return {
         init: init,

@@ -6,9 +6,13 @@ const API = (function () {
         COMMON.showMessage(COMMON.getMessageById("COM_901") + "<br><hr> API error catch:<br>" + JSON.stringify(error));
     };
 
-    const _get = function (url, callback) {
+    const _get = function (url, callback, isNoAuthorization) {
         try {
             $.ajax({
+                beforeSend: function (xhr) {
+                    if (isNoAuthorization) return;
+                    xhr.setRequestHeader('Authorization', 'Bearer ' + COMMON.getToken());
+                },
                 method: 'get',
                 contentType: contentType,
                 url: url,
@@ -25,9 +29,13 @@ const API = (function () {
         }
     };
 
-    const _post = function (url, params, callback) {
+    const _post = function (url, params, callback, isNoAuthorization) {
         try {
             $.ajax({
+                beforeSend: function (xhr) {
+                    if (isNoAuthorization) return;
+                    xhr.setRequestHeader('Authorization', 'Bearer ' + COMMON.getToken());
+                },
                 method: 'post',
                 contentType: contentType,
                 url: url,
@@ -45,9 +53,13 @@ const API = (function () {
         }
     };
 
-    const _put = function (url, params, callback) {
+    const _put = function (url, params, callback, isNoAuthorization) {
         try {
             $.ajax({
+                beforeSend: function (xhr) {
+                    if (isNoAuthorization) return;
+                    xhr.setRequestHeader('Authorization', 'Bearer ' + COMMON.getToken());
+                },
                 method: 'put',
                 contentType: contentType,
                 url: url,

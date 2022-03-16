@@ -136,7 +136,7 @@ var COMMON = (function () {
     //Token取得
     function getToken() {
         if (!chkSessionTimeOut())
-            return sessionGet(SESSION_KEY).token;
+            return sessionGet(SESSION_KEY).jwt;
     }
 
     //病院コード取得
@@ -166,10 +166,10 @@ var COMMON = (function () {
             },
         }
     };
-    var _layout = "fitColumns";//カラムコンテナに合わせる
+    var _layout = "fitColumns";     //カラムコンテナに合わせる
     var _pagination = "local";
-    var _paginationSize = 5;//5行でページング
-    var _movableColumns = true;//カラムの移動を許可する
+    var _paginationSize = 5;        //5行でページング
+    var _movableColumns = true;     //カラムの移動を許可する
     var _locale = "jp";
     var _dateSetting = {
         format: "yyyy-mm-dd",

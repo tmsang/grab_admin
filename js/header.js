@@ -27,11 +27,10 @@ $.getJSON("data/menu.json", function (data) {
         var param = getQueryString();
         menus = COMMON.getMenusAllow();
         for (var i = 0; i < master.length; i++) {
-            if (menus.indexOf(master[i].gmid) >= 0) {
-                $('#menu').append(
-                    '<li><a class="dropdown-item" href="' + master[i].url + '">' + master[i].gmid + '&nbsp;' + master[i].name + '</a></li>'
-                );
-            }
+            $('#menu').append(
+                '<li><a class="dropdown-item" href="' + master[i].url + '">' + master[i].gmid + '&nbsp;' + master[i].name + '</a></li>'
+            );
+            
             if (param) {
                 if (master[i].gmid == param["gmid"]) {
                     $('#thisPagelnk').text(master[i].name);

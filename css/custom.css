@@ -129,4 +129,143 @@ body {
 #ms-detailDepartmentOptg{
   margin: auto;width: 430px;
 }
-/*# sourceMappingURL=custom.css.map */
+
+/*=======================================
+    CSS
+========================================*/
+.direction-container * {
+	box-sizing: border-box;
+	font-size: 12px;
+}
+
+.direction-container h2 {
+	font-size: 25px;
+	padding: 10px 0 10px 0;
+}
+
+.direction-container .header{
+	padding-top: 10px;
+	padding-bottom: 10px;
+	padding-right: 10px;
+	display: inline-flex;
+	width: 100%;
+}
+
+.direction-container .header .left {
+	width: 70%;
+	text-align: left;
+}
+.direction-container .header .right {
+	width: 30%;
+	text-align: right;
+}
+.direction-container .header .right .today {
+	font-weight: bolder;
+}
+
+.direction-container .header .spacing {
+	padding-top: 10px;
+	padding-bottom: 10px;
+	padding-right: 20px;
+}
+
+.direction-container .header .value {
+	font-weight: bolder;
+}
+
+.direction-container .list-messages {
+	list-style-type: none;
+	padding: 0;
+	margin: 0;
+}
+  
+.direction-container .list-messages li {
+	border: 1px solid #ddd;
+	margin-top: -1px; /* Prevent double borders */
+	background-color: #f6f6f6;
+	padding: 8px;
+	text-decoration: none;
+	font-size: 18px;
+	color: black;
+	display: block
+}
+  
+.direction-container .list-messages li a:hover:not(.header) {
+	background-color: #eee;
+}
+
+.direction-container .list-messages .address {
+	font-size: 11px;
+}
+
+.direction-container .list-messages .progress {
+	display: inline-block;
+	width: 100px;
+	height: 10px;	
+	border-radius: 5px;	
+}
+.direction-container .list-messages .progress.new {
+	background-color: #ccc;
+}
+.direction-container .list-messages .progress.pending {
+	background-color: #0000ff;
+}
+.direction-container .list-messages .progress.cancel {
+	background-color: #ff0000;
+}
+.direction-container .list-messages .progress.done {
+	background-color: #000;
+}
+
+.direction-container .list-messages .position {
+	margin-top: 8px;
+    margin-right: 20px;
+}
+
+.direction-container .list-messages .left {
+	width: 50%;
+    vertical-align: middle;
+    line-height: 34px;
+}
+
+.direction-container .list-messages .right {
+	width: 50%;
+	text-align: right;
+}
+
+.direction-container .list-messages .clearfix {
+	display: inline-flex;
+	width: calc(100% - 30px);
+}
+
+.direction-container .list-messages .right .icon {
+	font-size: 12px;
+    font-weight: bold;
+    background-color: #ccc;
+    padding: 5px;
+	margin: 3px;
+    border-radius: 5px;
+    width: 50px;
+    display: inline-block;
+    text-align: center;	
+}
+.direction-container .list-messages .right .icon1 {	
+	font-size: 15px;
+	padding-right: 10px;
+	color: #0000ff;
+}
+.direction-container .list-messages .right .icon2 {	
+	font-size: 15px;
+	padding-right: 10px;
+	color: #d400ff;
+}
+.direction-container .list-messages .right .icon3 {	
+	font-size: 15px;
+	padding-right: 10px;
+	color: #ff0000;
+}
+.direction-container .list-messages .right .timer {	
+	font-weight: bold;
+	font-size: 13px;
+	padding-left: 15px;
+}

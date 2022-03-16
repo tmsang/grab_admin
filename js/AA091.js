@@ -310,18 +310,14 @@ const AA091_GUI = (function () {
                     title: "Id", field: "Id", width: 150 
                 },
                 {
-                    title: "Full Name", field: "FullName", width: 200, editor: "autocomplete",
-                    editorParams: function (cell) {
-                        return {
-                            showListOnEmpty: true,
-                            freetext: false,
-                            // allowEmpty: true, 
-                            values: detailListUserId
-                        };
+                    title: "Full Name", field: "FullName", width: 200, editor: "input",
+                    editorParams: {
+                        elementAttributes: {
+                            maxlength: AA091.MAX_TERMINALINFO,
+                        }
                     },
-                    formatter: cell_user,
                     validator: [{
-                        type: isInputUser
+                        type: isInputTerminalInfo
                     }]
                 },
                 {
