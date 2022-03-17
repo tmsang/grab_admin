@@ -3,10 +3,11 @@
 
     <div class="header">
         <div class="left">
-            <span class="spacing">Total Messages: <span class="value">12</span></span>
-            <span class="spacing">NEW: <span class="value">6</span></span>
-            <span class="spacing">PROCESSING: <span class="value">4</span></span>
-            <span class="spacing">CANCEL: <span class="value">2</span></span>
+            <span class="spacing">Total Messages: <span class="value" id="totalRequests">12</span></span>
+            <span class="spacing">NEW: <span class="value" id="totalNew">6</span></span>
+            <span class="spacing">PROCESSING: <span class="value" id="totalProcessing">4</span></span>
+            <span class="spacing">CANCEL: <span class="value" id="totalCancel">2</span></span>
+            <span class="spacing">DONE: <span class="value" id="totalDone">2</span></span>
         </div>
         <div class="right">
             <span id="timer" class="today">20-Mar-2022 16:42</span>
@@ -15,6 +16,7 @@
 
     <div class="body">
         <ul class="list-messages" id="list-messages">
+            <!--
             <li>
                 <details>
                     <summary>
@@ -45,43 +47,8 @@
                     <div class="address"><b>From: </b> 133 Duong ba trac P1 Q8</div>
                     <div class="address"><b>To: </b> 265 To dan P12 Q4</div>
                 </details>
-
             </li>
-
-            <li>
-                <details>
-                    <summary>
-                        <div class="clearfix">
-                            <div class="left">
-                                Guest 1 (0919257841) - 4 (km) - 28,000 (vnd)                                
-                            </div>                            
-
-                            <div class="right">
-                                <span class="position">
-                                    <span class="progress new">&nbsp;</span>
-                                </span>
-
-                                <span id="icon_1" class="icon" data-toggle="modal" data-target="#directionModal">
-                                    3.4 
-                                </span><i class="fas fa-biking icon1"></i>
-                                <span id="icon_2" class="icon" data-toggle="modal" data-target="#directionModal">
-                                    7.6 
-                                </span><i class="fas fa-biking icon2"></i>
-                                <span id="icon_3" class="icon" data-toggle="modal" data-target="#directionModal">
-                                    12.0 
-                                </span><i class="fas fa-biking icon3"></i>
-
-                                <span class="timer">08:54</span>
-                            </div>                            
-                        </div>
-                    </summary>
-                    <div class="address"><b>From: </b> 133 Duong ba trac P1 Q8</div>
-                    <div class="address"><b>To: </b> 265 To dan P12 Q4</div>
-                </details>
-
-            </li>
-          
-           
+            -->                     
 
         </ul>
     </div>

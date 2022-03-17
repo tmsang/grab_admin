@@ -28,7 +28,7 @@ const AA001 = (function () {
         API.POST(URL_LOGIN, { 'Type': 'admin', 'Email': loginId, 'Password': password }, function (user) {
             if (user) {                
                 COMMON.sessionSet(SESSION_KEY, user);
-                window.location.href = "./index.html?gmid=AA072";
+                window.location.href = "./index.html?gmid=AA071";
                 return;
             }
 

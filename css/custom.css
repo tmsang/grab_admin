@@ -208,13 +208,13 @@ body {
 	background-color: #ccc;
 }
 .direction-container .list-messages .progress.pending {
-	background-color: #0000ff;
+	background-color: #c515b6;
 }
 .direction-container .list-messages .progress.cancel {
 	background-color: #ff0000;
 }
 .direction-container .list-messages .progress.done {
-	background-color: #000;
+	background-color: #0000ff;
 }
 
 .direction-container .list-messages .position {

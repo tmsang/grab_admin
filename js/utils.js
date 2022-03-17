@@ -83,3 +83,72 @@ const API = (function () {
         PUT: _put,
     };
 })();
+
+var UTILS = (function() {
+
+    function formatCurrency(s) {
+        s = s + '';
+        return s && s.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    }
+
+    function formatDate(date, format) 
+    { 
+        var m = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];            
+        var day, month, year, hour, minute;
+
+        if (typeof date === 'string' || date instanceof String) 
+        {
+            // "2022-03-10T15:03:19.153419"
+            day = date.substring(8, 10) * 1;
+            month = date.substring(5, 7) * 1;
+            year = date.substring(0, 4) * 1;
+            hour = date.substring(11, 13) * 1;
+            minute = date.substring(14, 16) * 1;            
+        }        
+        else if (date instanceof Date) 
+        {
+            day = date.getDate();
+            month = date.getMonth();
+            year = date.getFullYear();
+            hour = date.getHours();
+            minute = date.getMinutes();                                
+        }                
+
+        if (format === 'dd-MMM-yyyy hh:mm') {
+            return (day < 10 ? '0' : '') + day
+                + '-' + m[month]
+                + '-' + year + ' '
+                + (hour < 10 ? '0' : '') + hour + ':'
+                + (minute < 10 ? '0' : '') + minute;
+        }
+        if (format === 'dd-MMM-yyyy') {
+            return (day < 10 ? '0' : '') + day + '-' + m[month] + '-' + year;
+        }
+        if (format === 'hh:mm') {
+            return (hour < 10 ? '0' : '') + hour + ':' + (minute < 10 ? '0' : '') + minute;
+        }        
+        return 'UnKown';    
+    }
+
+    function convertDateTimeToTicks(date) {
+        // the number of .net ticks at the unix epoch
+        var epochTicks = 621355968000000000;
+        // there are 10000 .net ticks per millisecond
+        var ticksPerMillisecond = 10000;
+        // calculate the total number of .net ticks for your date
+        var ticks = epochTicks + (date.getTime() * ticksPerMillisecond);
+
+        return ticks;
+    }
+
+    return {
+        formatCurrency: formatCurrency,
+        formatDate: formatDate,
+        convertDateTimeToTicks: convertDateTimeToTicks
+    };
+})();
+
+var PROTOTYPE = (function() {
+    
+
+})();

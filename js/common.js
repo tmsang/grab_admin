@@ -179,6 +179,27 @@ var COMMON = (function () {
         language: 'ja'
     }
 
+    //=============================================
+    // SANG custom
+    //=============================================
+    function getStatusWithClassCss(status) {
+        if (status === 1) return 'new';                             // == Pending
+        if (status === 2 || status === 3) return 'pending';         // == Processing        
+        if (status === 4 || status === 5) return 'done';            // == Ended
+        if (status === 10 || status === 11 || status === 12 || status === 13) return 'cancel';   // == cancel by user
+        return '';
+    }
+
+    function getStatistic(requests) {
+        return {
+            'totalRequests': requests.length,
+            'totalNew': requests.filter(p => { return p.Status === 1; }).length,
+            'totalProcessing': requests.filter(p => { return p.Status === 2 || p.Status === 3; }).length,
+            'totalCancel': requests.filter(p => { return p.Status === 10 || p.Status === 11 || p.Status === 12 || p.Status === 13; }).length,
+            'totalDone': requests.filter(p => { return p.Status === 4 || p.Status === 5; }).length,
+        };
+    }
+
     return {
         setEnterKeyAsTab: setEnterKeyAsTab,
         chkLoginStatus: chkLoginStatus,
@@ -201,7 +222,10 @@ var COMMON = (function () {
         paginationSize: _paginationSize,
         movableColumns: _movableColumns,
         locale: _locale,
-        dateSetting: _dateSetting
+        dateSetting: _dateSetting,
+
+        getStatusWithClassCss: getStatusWithClassCss,
+        getStatistic: getStatistic
     };
 
 })();
