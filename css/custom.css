@@ -269,3 +269,29 @@ body {
 	font-size: 13px;
 	padding-left: 15px;
 }
+
+.direction-modal {
+  font-size: 12px;
+}
+.direction-modal .row {
+  width: 100%;
+  padding: 10px;
+}
+.direction-modal .row .left {
+  float: left;
+  width: 100px;
+}
+.direction-modal .row .left .label {
+  font-weight: bold;
+}
+.direction-modal .row .right {
+  float: right;
+  width: 300px;
+  text-align: left;
+}
+.direction-modal .row .right .zalo {
+  padding-left: 15px;
+  color: #0000ff;
+  text-underline-position: below;
+  cursor: pointer;
+}

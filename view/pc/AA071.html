@@ -3,14 +3,14 @@
 
     <div class="header">
         <div class="left">
-            <span class="spacing">Total Messages: <span class="value" id="totalRequests">12</span></span>
-            <span class="spacing">NEW: <span class="value" id="totalNew">6</span></span>
-            <span class="spacing">PROCESSING: <span class="value" id="totalProcessing">4</span></span>
-            <span class="spacing">CANCEL: <span class="value" id="totalCancel">2</span></span>
-            <span class="spacing">DONE: <span class="value" id="totalDone">2</span></span>
+            <span class="spacing">Total Messages: <span class="value" id="totalRequests">0</span></span>
+            <span class="spacing">NEW: <span class="value" id="totalNew">0</span></span>
+            <span class="spacing">PROCESSING: <span class="value" id="totalProcessing">0</span></span>
+            <span class="spacing">CANCEL: <span class="value" id="totalCancel">0</span></span>
+            <span class="spacing">DONE: <span class="value" id="totalDone">0</span></span>
         </div>
         <div class="right">
-            <span id="timer" class="today">20-Mar-2022 16:42</span>
+            <span id="timer" class="today">01-Jan-0001 00:00</span>
         </div>        
     </div>
 
@@ -60,19 +60,51 @@
 
 <div>        
     <!-- The Modal -->
-    <div class="modal fade" id="directionModal">
+    <div class="modal fade direction-modal" id="directionModal">
         <div class="modal-dialog">
             <div class="modal-content">
 
                 <!-- Modal Header -->
                 <div class="modal-header">
-                    <h4 class="modal-title">Modal Heading</h4>
+                    <h4 class="modal-title">Driver Info</h4>
                     <button type="button" class="close" data-dismiss="modal">×</button>
                 </div>
 
                 <!-- Modal body -->
                 <div class="modal-body">
-                    Modal body..
+                    <div class="row">
+                        <div class="left">
+                            <span class="label">Full Name</span>
+                        </div>
+                        <div class="right">
+                            <span class="value">Sang Minh Thach</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="left">
+                            <span class="label">Phone</span>
+                        </div>
+                        <div class="right">
+                            <span class="value">(090)-714-2341</span>
+                            <span class="zalo">Call Zalo...</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="left">
+                            <span class="label">Email</span>
+                        </div>
+                        <div class="right">
+                            <span class="value">thanh_nguyen@gmail.com</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="left">
+                            <span class="label">Address</span>
+                        </div>
+                        <div class="right">
+                            <span class="value">176 Hoang Dieu P12 Q4</span>
+                        </div>
+                    </div>
                 </div>
 
                 <!-- Modal footer -->
