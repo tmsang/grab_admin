@@ -15,10 +15,10 @@ var AA071 = (function () {
     }
 
     function interval_get() {
-        var timer = setInterval(function () {
+        var timer = setInterval(function () {            
             loadMessages(fromTimer);
             fromTimer = new Date();
-        }, 5000);
+        }, 10000);
 
         return timer;
     }
