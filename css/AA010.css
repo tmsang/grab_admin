@@ -1,0 +1,73 @@
+.account-container * {
+    box-sizing: border-box;
+    font-size: 12px;
+}
+ 
+.account-container .search {
+    background-image: url('/css/searchicon.png');
+    background-position: 10px 12px;
+    background-repeat: no-repeat;
+    width: 100%;
+    font-size: 16px;
+    padding: 12px 20px 12px 40px;
+    border: 1px solid #ddd;
+    margin-bottom: 12px;
+}
+
+.account-container .grid-container {
+    margin-left:-5px;
+    margin-right:-5px;
+}
+    
+.account-container .left {
+    float: left;
+    width: 100%;
+    padding: 5px;
+}
+  
+  /* Clearfix (clear floats) */
+.account-container .grid-container::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+  
+.account-container table {
+    border-collapse: collapse;
+    border-spacing: 0;    
+    width: 100%;
+    border: 1px solid #ddd;
+    background-color: #fff;
+}
+
+.account-container table, th, td {
+    border: 1px solid #ddd;
+    border-collapse: collapse;
+}
+
+.account-container th, td {    
+    padding: 8px;
+}
+  
+.account-container tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.account-container table tr .cell-no {    
+    text-align: center;
+}
+.account-container table tr .cell-id {    
+    text-align: left;
+}
+.account-container table tr .cell-fullname {    
+    text-align: left;
+}
+.account-container table tr .cell-email {    
+    text-align: left;
+}
+.account-container table tr .cell-phone {    
+    text-align: left;
+}
+.account-container table tr .cell-status {    
+    text-align: center;
+}

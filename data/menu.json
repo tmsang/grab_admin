@@ -1,4 +1,5 @@
 { "pc":[
+    {"gmid":"AA010","url":"index.html?gmid=AA010","name":"Active Account"},
     {"gmid":"AA071","url":"index.html?gmid=AA071","name":"通知管理"},
     {"gmid":"AA072","url":"index.html?gmid=AA072","name":"通知管理"},
     {"gmid":"AA011","url":"index.html?gmid=AA011","name":"通知管理"},
