@@ -94,7 +94,7 @@ var UTILS = (function() {
     function formatDate(date, format) 
     { 
         var m = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];            
-        var day, month, year, hour, minute;
+        var day, month, year, hour, minute, second;
 
         if (typeof date === 'string' || date instanceof String) 
         {
@@ -103,7 +103,8 @@ var UTILS = (function() {
             month = date.substring(5, 7) * 1;
             year = date.substring(0, 4) * 1;
             hour = date.substring(11, 13) * 1;
-            minute = date.substring(14, 16) * 1;            
+            minute = date.substring(14, 16) * 1;
+            second = date.substring(17, 19) * 1;
         }        
         else if (date instanceof Date) 
         {
@@ -111,9 +112,18 @@ var UTILS = (function() {
             month = date.getMonth();
             year = date.getFullYear();
             hour = date.getHours();
-            minute = date.getMinutes();                                
+            minute = date.getMinutes();
+            second = date.getSeconds();                                
         }                
 
+        if (format === 'dd-MMM-yyyy hh:mm:ss') {
+            return (day < 10 ? '0' : '') + day
+                + '-' + m[month]
+                + '-' + year + ' '
+                + (hour < 10 ? '0' : '') + hour + ':'
+                + (minute < 10 ? '0' : '') + minute + ':'
+                + (second < 10 ? '0' : '') + second;
+        }
         if (format === 'dd-MMM-yyyy hh:mm') {
             return (day < 10 ? '0' : '') + day
                 + '-' + m[month]

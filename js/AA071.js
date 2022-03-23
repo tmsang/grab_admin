@@ -7,7 +7,7 @@ var AA071 = (function () {
     function startTimer() {
         // Update the count down every 1 second
         var timer = setInterval(function () {
-            var result = UTILS.formatDate(new Date(), 'dd-MMM-yyyy hh:mm');
+            var result = UTILS.formatDate(new Date(), 'dd-MMM-yyyy hh:mm:ss');
             document.getElementById("timer").innerHTML = result;
         }, 1000);
 
