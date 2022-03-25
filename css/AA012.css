@@ -1,0 +1,168 @@
+.account-container * {
+    box-sizing: border-box;
+    font-size: 12px;
+}
+
+.account-container h2 {    
+    font-size: 22px;
+}
+
+/*=======================================
+    HEADER SEARCH
+=======================================*/
+.account-container .search {
+    background-image: url('/css/searchicon.png');
+    background-position: 10px 12px;
+    background-repeat: no-repeat;
+    width: 100%;
+    font-size: 16px;
+    padding: 12px 20px 12px 40px;
+    border: 1px solid #ddd;
+    margin-bottom: 12px;
+}
+
+/*=======================================
+    HEADER LEFT
+=======================================*/
+.account-container .left {
+    float: left;    
+    padding: 5px;
+}
+.account-container .left.full {
+    width: 100%;
+}
+.account-container .left.half {
+    width: 50%;
+}
+.account-container .left table tr th {
+    cursor: pointer;    
+}
+.account-container .left table tr th:hover {
+    background-color: #666;
+    color: #fff;
+}
+.account-container .left .cell-guest {
+    text-align: center;
+    background-color: #0000ff;
+    color: #fff;
+}
+.account-container .left .cell-driver {
+    text-align: center;
+    background-color: #ff0000;
+    color: #fff;
+}
+.account-container .left .cell-admin {
+    text-align: center;
+    background-color: #ffff00;
+}
+
+/*=======================================
+    HEADER RIGHT
+=======================================*/
+.account-container .right {
+    float: right;    
+    padding: 5px;
+}
+.account-container .right table tr th span {
+    padding-right: 15px;
+}
+.account-container .right table tr th input {
+    line-height: 25px;
+}
+.account-container .right table tr th input {
+    line-height: 25px;
+}
+
+.account-container .right table tr .cell-active {    
+    text-align: center;
+    width: 100px;
+}
+.account-container .right table tr .cell-lock {    
+    text-align: center;
+    width: 100px;
+}
+.account-container .right table tr .cell-hide {    
+    text-align: center;
+    width: 100px;
+}
+
+/*=======================================
+    GRID - TABLE
+=======================================*/
+.account-container .grid-container {
+    margin-left:-5px;
+    margin-right:-5px;
+}
+
+  /* Clearfix (clear floats) */
+.account-container .grid-container::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+  
+.account-container table {
+    border-collapse: collapse;
+    border-spacing: 0;    
+    width: 100%;
+    border: 1px solid #ddd;
+    background-color: #fff;
+}
+
+.account-container table, th, td {
+    border: 1px solid #ddd;
+    border-collapse: collapse;
+}
+
+.account-container th, td {    
+    padding: 8px;
+    vertical-align: middle;
+}
+  
+.account-container tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+/*=======================================
+    GRID - CELL
+=======================================*/
+.account-container .left table tr .cell-no {    
+    text-align: center;
+}
+.account-container .left table tr .cell-id {    
+    text-align: left;
+}
+.account-container .left table tr .cell-fullname {    
+    text-align: left;
+}
+.account-container .left table tr .cell-email {    
+    text-align: left;
+}
+.account-container .left table tr .cell-email span {    
+    cursor: pointer;
+    text-decoration: underline;
+    color: #0000ff;
+}
+.account-container .left table tr .cell-email span:hover {     
+    color: #ff0000;
+}
+.account-container .left table tr .cell-phone {    
+    text-align: left;
+}
+.account-container .left table tr .cell-phone span {    
+    cursor: pointer;
+    text-decoration: underline;
+    color: #0000ff;
+}
+.account-container .left table tr .cell-phone span:hover {     
+    color: #ff0000;
+}
+.account-container .left table tr .cell-active {    
+    text-align: center;
+}
+.account-container .left table tr .cell-lock {    
+    text-align: center;
+}
+.account-container .left table tr .cell-hide {    
+    text-align: center;
+}

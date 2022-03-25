@@ -4,7 +4,9 @@
  *********************************************************************/
 //API
 const API_HOST = 'https://172.25.129.73:44331';
+
 const URL_LOGIN = API_HOST + "/api/admin/login";
+const URL_ADMIN = API_HOST + "/api/admin";
 const URL_ADMIN_ORDER = API_HOST + "/api/admin/order";
 
 //AA011

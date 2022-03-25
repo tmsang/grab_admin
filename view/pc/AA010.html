@@ -3,34 +3,107 @@
 <div class="account-container">
     <h2>Active Account</h2>
 
-    <input type="text" id="search" class="search" onkeyup="myFunction()" placeholder="Search for names..">
+    <input type="text" id="searchFullName" class="search" onkeyup="AA010.search(this.value)" placeholder="Search Full Name..">
+    <input type="text" id="searchPhone" class="search" onkeyup="AA010.search(this.value)" placeholder="Search Phone..">
+    <input type="text" id="searchEmail" class="search" onkeyup="AA010.search(this.value)" placeholder="Search Email..">
 
     <div class="grid-container">
-        <div class="left">
+        <div class="left half">
             <table>
                 <tr>
-                    <th class="cell-no">No</th>
-                    <th class="cell-id">Id</th>
-                    <th class="cell-fullname">Full Name</th>
-                    <th class="cell-email">Email</th>
-                    <th class="cell-phone">Phone</th>
-                    <th class="cell-status">Status</th>
+                    <th class="cell-guest" onclick="AA010.tab('guest')">GUEST</th>
+                    <th class="cell-driver" onclick="AA010.tab('driver')">DRIVER</th>
+                    <th class="cell-admin" onclick="AA010.tab('admin')">ADMIN</th>
                 </tr>
-                <tr>
-                    <td class="cell-no">1</td>
-                    <td class="cell-id">03cb489b-cd9f-42e9-88a3-0605393a179a</td>
-                    <td class="cell-fullname">Guest 2</td>
-                    <td class="cell-email">sangnews2014@gmail.com</td>
-                    <td class="cell-phone">0708825109</td>
-                    <td class="cell-status">None</td>
-                </tr>                             
             </table>
-        </div>        
+        </div>
+        <div class="right">
+            <table>
+                <tr>
+                    <th class="cell-active">
+                        <span>Active</span><input id="chkShowActiveAccount" type="checkbox" />
+                    </th>
+                    <th class="cell-lock">
+                        <span>Lock</span><input id="chkShowLockAccount" type="checkbox" />
+                    </th>
+                    <th class="cell-hide">
+                        <span>Hide</span><input id="chkShowHiddenAccount" type="checkbox" />
+                    </th>
+                </tr>
+            </table>
+        </div>
     </div>
 
+    <div class="grid-container">
+        <ul class="accounts" id="accounts">            
+            <!--li class="header">
+                <details>
+                    <summary>
+                        <div class="dong full">
+                            <div class="cell-no">No</div>
+                            <div class="cell-id">Id</div>
+                            <div class="cell-fullname">Full Name</div>
+                            <div class="cell-email">Email</div>
+                            <div class="cell-phone">Phone</div>
+                            <div class="cell-modify">Modified Date</div>
+                            <div class="cell-actived">Actived</div>
+                            <div class="cell-locked">Locked</div>
+                            <div class="cell-hidden">Hiden</div>
+                        </div>
+                    </summary>                    
+                </details>
+            </li> 
+            <li>
+                <details>
+                    <summary>
+                        <div class="dong full">
+                            <div class="cell-no">1</div>
+                            <div class="cell-id" title="03cb489b-cd9f-42e9-88a3-0605393a179a">03cb489b...</div>
+                            <div class="cell-fullname">Trần Nguyễn Thanh Kim Huệ</div>
+                            <div class="cell-email">
+                                <span
+                                    onclick="AA010.email('03cb489b-cd9f-42e9-88a3-0605393a179a', 'sangnews2014@gmail.com')">sangnews2014@gmail.com</span>
+                            </div>
+                            <div class="cell-phone">
+                                <span
+                                    onclick="AA010.phone('03cb489b-cd9f-42e9-88a3-0605393a179a', '0708825109')">0708825109</span>
+                            </div>
+                            <div class="cell-modify">23-Mar-2022 15:42</div>
+                            <div class="cell-actived">
+                                <input type="checkbox" class=""
+                                    onclick="AA010.active('03cb489b-cd9f-42e9-88a3-0605393a179a', this)" />
+                            </div>
+                            <div class="cell-locked">
+                                <input type="checkbox" class=""
+                                    onclick="AA010.lock('03cb489b-cd9f-42e9-88a3-0605393a179a', this)" />
+                            </div>
+                            <div class="cell-hidden">
+                                <button onclick="AA010.hide('03cb489b-cd9f-42e9-88a3-0605393a179a')">Hide</button>
+                            </div>
+                        </div>
+                    </summary>
+                    <div class="history-container">
+                        <div class="history">
+                            <div class="sub-header">
+                                <div class="sub-cell-no">No</div>     
+                                <div class="sub-cell-date">Happen Date</div>
+                                <div class="sub-cell-status">Status</div>
+                                <div class="sub-cell-description">Description</div>
+                            </div>    
+                            <div class="sub-body">
+                                <div class="sub-cell-no">1</div>     
+                                <div class="sub-cell-date">22-Mar-2022 13:43</div>
+                                <div class="sub-cell-status">New</div>
+                                <div class="sub-cell-description">create new account</div>
+                            </div>
+                        </div>
+                    </div>                    
+                </details>
+            </li-->            
+
+        </ul>
+    </div>
+   
 </div>
-
-
-
 
 <script src="./js/AA010.js" type="text/javascript"></script>
