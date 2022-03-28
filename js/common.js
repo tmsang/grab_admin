@@ -183,10 +183,13 @@ var COMMON = (function () {
     // SANG custom
     //=============================================
     function getStatusWithClassCss(status) {
+        if (status === -2) return 'hide';
+        if (status === -1) return 'lock';
+
         if (status === 1) return 'new';                             // == Pending
         if (status === 2 || status === 3) return 'pending';         // == Processing        
         if (status === 4 || status === 5) return 'done';            // == Ended
-        if (status === 10 || status === 11 || status === 12 || status === 13) return 'cancel';   // == cancel by user
+        if (status === 10 || status === 11 || status === 12 || status === 13) return 'cancel';   // == cancel by user        
         return '';
     }
 

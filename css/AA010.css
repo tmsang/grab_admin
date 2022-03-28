@@ -6,20 +6,46 @@
 
 .account-container h2 {    
     font-size: 22px;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 /*=======================================
     HEADER SEARCH
 =======================================*/
 .account-container .search {
+    margin-bottom: 20px;
+}
+.account-container .search::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+.account-container .search input {
     background-image: url('/css/searchicon.png');
     background-position: 10px 12px;
-    background-repeat: no-repeat;
-    width: 100%;
+    background-repeat: no-repeat;    
     font-size: 16px;
-    padding: 12px 20px 12px 40px;
+    padding: 7px 10px 7px 10px;
     border: 1px solid #ddd;
-    margin-bottom: 12px;
+    margin-bottom: 0;
+}
+.account-container .search input#searchFullName {
+    width: 50%;
+    float: left;
+}
+.account-container .search input#searchPhone {
+    width: 25%;
+    float: right;
+    position: relative;
+    left: 25%;
+}
+.account-container .search input#searchEmail {
+    width: 25%;
+    float: right;
+    position: relative;
+    left: -25%;
 }
 
 /*=======================================
@@ -104,6 +130,7 @@
     list-style-type: none;
     padding : 0;
     margin-left: 5px;
+    margin-right: 5px;
 }
 
 .account-container .grid-container .header div {
@@ -159,7 +186,7 @@
 .account-container .dong.full {
     display: inline-table;
     line-height: 30px;
-    width: 97%;        
+    width: calc(100% - 13px);
 }
 
 .account-container .dong div {

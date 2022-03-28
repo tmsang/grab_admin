@@ -3,9 +3,11 @@
 <div class="account-container">
     <h2>Active Account</h2>
 
-    <input type="text" id="searchFullName" class="search" onkeyup="AA010.search(this.value)" placeholder="Search Full Name..">
-    <input type="text" id="searchPhone" class="search" onkeyup="AA010.search(this.value)" placeholder="Search Phone..">
-    <input type="text" id="searchEmail" class="search" onkeyup="AA010.search(this.value)" placeholder="Search Email..">
+    <div class="search">
+        <input type="text" id="searchFullName" class="searchFullName" onkeyup="AA010.search(this)" placeholder="Search Full Name..">        
+        <input type="text" id="searchEmail" class="searchEmail" onkeyup="AA010.search(this)" placeholder="Search Email..">
+        <input type="text" id="searchPhone" class="searchPhone" onkeyup="AA010.search(this)" placeholder="Search Phone..">
+    </div>    
 
     <div class="grid-container">
         <div class="left half">
@@ -21,13 +23,13 @@
             <table>
                 <tr>
                     <th class="cell-active">
-                        <span>Active</span><input id="chkShowActiveAccount" type="checkbox" />
+                        <span>Active</span><input id="chkShowActiveAccount" type="checkbox" onclick="AA010.search(this)" />
                     </th>
                     <th class="cell-lock">
-                        <span>Lock</span><input id="chkShowLockAccount" type="checkbox" />
+                        <span>Lock</span><input id="chkShowLockAccount" type="checkbox" onclick="AA010.search(this)" />
                     </th>
                     <th class="cell-hide">
-                        <span>Hide</span><input id="chkShowHiddenAccount" type="checkbox" />
+                        <span>Hide</span><input id="chkShowHiddenAccount" type="checkbox" onclick="AA010.search(this)" />
                     </th>
                 </tr>
             </table>

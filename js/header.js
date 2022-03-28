@@ -40,7 +40,7 @@ $.getJSON("data/menu.json", function (data) {
                 }
             }
         }
-        $('#menu').append('<li><a class="dropdown-item" href="javascript:COMMON.logout();"><i class="fas fa-sign-out-alt"></i>ログアウト</a></li>');
+        $('#menu').append('<li><a class="dropdown-item" href="javascript:COMMON.logout();"><i class="fas fa-sign-out-alt"></i><span class="logout">Logout</span></a></li>');
         return;
     }
 });

@@ -295,3 +295,13 @@ body {
   text-underline-position: below;
   cursor: pointer;
 }
+
+.navbar-brand {  
+  padding: 0.3525rem;  
+  border: 1px solid #aaa;
+  background-color: #ccc;  
+  font-weight: bolder;
+}
+.logout {
+  padding-left: 10px;
+}

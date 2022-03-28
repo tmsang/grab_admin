@@ -100,7 +100,7 @@ var UTILS = (function() {
         {
             // "2022-03-10T15:03:19.153419"
             day = date.substring(8, 10) * 1;
-            month = date.substring(5, 7) * 1;
+            month = (date.substring(5, 7) * 1) - 1;
             year = date.substring(0, 4) * 1;
             hour = date.substring(11, 13) * 1;
             minute = date.substring(14, 16) * 1;
@@ -116,6 +116,15 @@ var UTILS = (function() {
             second = date.getSeconds();                                
         }                
 
+        if (format === 'yyyy-MM-ddThh:mm:ss') {
+            return 
+                '' + year + '-'    
+                + (month < 10 ? '0' : '') + (month + 1) + '-'
+                + (day < 10 ? '0' : '') + day + 'T'                                
+                + (hour < 10 ? '0' : '') + hour + ':'
+                + (minute < 10 ? '0' : '') + minute + ':'
+                + (second < 10 ? '0' : '') + second;
+        }
         if (format === 'dd-MMM-yyyy hh:mm:ss') {
             return (day < 10 ? '0' : '') + day
                 + '-' + m[month]
