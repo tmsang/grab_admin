@@ -149,19 +149,21 @@ var AA010 = (function () {
     }
 
     function addRecordToHistory(id, status) {
-        var now = new Date();
-        debugger;
+        var now = new Date();        
 
-        // add record into data[type]
+        // update record + add record into Histories of data[type]
         var items = data[currentTab].filter(p => { return p.Id == id; });
         if (!items || items.length <= 0) {
             console.log('Id is not exists in temp array data.');
             return;
         }
 
+        var modifiedDate = UTILS.formatDate(now, 'yyyy-MM-ddThh:mm:ss');
+        items[0].ModifiedDate = modifiedDate;
+        items[0].Status = status;
         items[0].Histories.unshift({
             'Id': (items[0].Histories[0].Id + 1),
-            'HappenDate': UTILS.formatDate(now, 'yyyy-MM-ddThh:mm:ss'),     // 2022-03-28T15:22:49.492963
+            'HappenDate': modifiedDate,             // 2022-03-28T15:22:49.492963
             'Status': status,
             'Description': 'Change status account ' + COMMON.getStatusWithClassCss(status)
         });
@@ -299,7 +301,7 @@ var AA010 = (function () {
             }
         });
 
-        // replace body (second)
+        // replace body (second)        
         var body = s.replace(/{\w+}/gi, function (match) {
             var field = match.replace(/[{}]/gi, '');
 

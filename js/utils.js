@@ -117,8 +117,7 @@ var UTILS = (function() {
         }                
 
         if (format === 'yyyy-MM-ddThh:mm:ss') {
-            return 
-                '' + year + '-'    
+            return year + '-'    
                 + (month < 10 ? '0' : '') + (month + 1) + '-'
                 + (day < 10 ? '0' : '') + day + 'T'                                
                 + (hour < 10 ? '0' : '') + hour + ':'
